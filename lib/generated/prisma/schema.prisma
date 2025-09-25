@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model UnsplashCollection {
+  collectionId           String                  @id
+  ingestionComplete      Boolean                 @default(false)
+  ingestedUnsplashImages IngestedUnsplashImage[]
+  ScheduledImage         ScheduledImage[]
+}
+
+model IngestedUnsplashImage {
+  ingestedImageId String             @id @default(uuid())
+  source          ImageSource        @default(Unsplash)
+  url             String
+  sourceId        String             @unique
+  approved        Boolean?
+  collectionId    String
+  collection      UnsplashCollection @relation(fields: [collectionId], references: [collectionId], onDelete: Restrict, onUpdate: Cascade)
+  dateIngested    DateTime           @default(now())
+}
+
+model ScheduledImage {
+  scheduledImageId String             @id @default(uuid())
+  source           ImageSource
+  url              String
+  sourceId         String             @unique
+  published        DateTime?
+  collectionId     String
+  collection       UnsplashCollection @relation(fields: [collectionId], references: [collectionId], onDelete: Restrict, onUpdate: Cascade)
+  dateIngested     DateTime           @default(now())
+  index            Int                @unique @default(autoincrement())
+}
+
+enum ImageSource {
+  Unsplash
+  Other
+}
+
+model GlobalState {
+  globalStateId Int        @id @default(autoincrement())
+  category      AnimalType @unique
+  startDate     DateTime
+  skips         Int        @default(0)
+}
+
+enum AnimalType {
+  Horse
+}
