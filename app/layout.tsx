@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
+import LoginSync from "@/components/auth/LoginSync";
 
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
 const geistSans = Geist({
     variable: "--font-geist-sans",
     subsets: ["latin"],
@@ -30,6 +34,7 @@ export default function RootLayout({
                     <Header />
                     {children}
                 </main>
+                <LoginSync />
             </body>
         </html>
     );

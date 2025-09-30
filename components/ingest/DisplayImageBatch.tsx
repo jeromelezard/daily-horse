@@ -5,24 +5,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import { getUnapprovedImageBatch, reviewImage } from "@/lib/ingest";
 import { Spinner } from "../ui/spinner";
-import { AnimatePresence, cubicBezier, motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { loadingVariants } from "../home/DisplayHorse";
 
 interface DisplayImageBatchProps {
     initialImages: IngestedUnsplashImage[];
 }
-const loadingVariants = {
-    initial: {
-        opacity: 0,
-    },
-    animate: {
-        opacity: 1,
-        transition: { duration: 2, ease: cubicBezier(0.16, 1, 0.3, 1) },
-    },
-    exit: {
-        opacity: 0,
-        transition: { duration: 0.2, ease: cubicBezier(0.7, 0, 0.84, 0) },
-    },
-};
+
 function DisplayImageBatch({ initialImages }: DisplayImageBatchProps) {
     /**
      * FIRST HORSE: HFX5CB5PPPQ
@@ -31,6 +20,7 @@ function DisplayImageBatch({ initialImages }: DisplayImageBatchProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [imageBatch, setImageBatch] = useState(initialImages);
     const [portrait, setPortrait] = useState<boolean | null>(null);
+    const [loading, setLoading] = useState(false);
 
     const currentIndexRef = useRef(currentIndex);
     const imageBatchRef = useRef(imageBatch);
@@ -56,9 +46,13 @@ function DisplayImageBatch({ initialImages }: DisplayImageBatchProps) {
             const newBatch = await getUnapprovedImageBatch();
             setImageBatch(newBatch);
             setCurrentIndex(0);
+            setLoading(false);
         }
 
-        if (currentIndex === imageBatch.length) handleBatch();
+        if (currentIndex === imageBatch.length) {
+            setLoading(true);
+            handleBatch();
+        }
     }, [currentIndex, imageBatch.length]);
 
     useEffect(() => {
@@ -75,34 +69,37 @@ function DisplayImageBatch({ initialImages }: DisplayImageBatchProps) {
         <>
             <main className="flex flex-col items-center justify-center p-6">
                 <AnimatePresence>
-                    <motion.div
-                        key="horse1"
-                        id="horse"
-                        className={`${!portrait && "w-full"} max-w-5xl max-h-[80vh] flex justify-center`}
-                        variants={loadingVariants}
-                        initial="initial"
-                        animate="animate"
-                        exit="exit"
-                    >
-                        <Image
-                            src={imageBatch[currentIndex].url}
-                            alt="Random picture"
-                            width={1600}
-                            height={1200}
-                            className="w-full h-auto max-h-[80vh] object-contain rounded-2xl shadow-lg"
-                            priority
-                            onLoad={(event) => {
-                                console.log("hgello");
-                                const imgElement = event.target as HTMLImageElement;
-                                const isPortrait = imgElement.naturalHeight > imgElement.naturalWidth;
-                                if (isPortrait) {
-                                    setPortrait(true);
-                                } else {
-                                    setPortrait(false);
-                                }
-                            }}
-                        />
-                    </motion.div>
+                    {!loading && imageBatch[currentIndex] ? (
+                        <motion.div
+                            key="horse1"
+                            id="horse"
+                            className={`${!portrait && "w-full"} max-w-5xl max-h-[80vh] flex justify-center`}
+                            variants={loadingVariants}
+                            initial="initial"
+                            animate="animate"
+                            exit="exit"
+                        >
+                            <Image
+                                src={imageBatch[currentIndex].url}
+                                alt="Random picture"
+                                width={1600}
+                                height={1200}
+                                className="w-full h-auto max-h-[80vh] object-contain rounded-2xl shadow-lg"
+                                priority
+                                onLoad={(event) => {
+                                    const imgElement = event.target as HTMLImageElement;
+                                    const isPortrait = imgElement.naturalHeight > imgElement.naturalWidth;
+                                    if (isPortrait) {
+                                        setPortrait(true);
+                                    } else {
+                                        setPortrait(false);
+                                    }
+                                }}
+                            />
+                        </motion.div>
+                    ) : (
+                        <Spinner />
+                    )}
                 </AnimatePresence>
                 <div className="flex gap-3 mt-3">
                     <Button variant={"outline"} onClick={() => approveOrRejectImage(false)}>

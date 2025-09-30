@@ -1,8 +1,9 @@
-import CountdownToMidnight from "@/components/home/Countdown";
 import DisplayHorse from "@/components/home/DisplayHorse";
-import FavouritesButton from "@/components/home/FavouritesButton";
+import Footer from "@/components/layout/Footer";
+import { auth } from "@/lib/auth/auth";
 import { prisma } from "@/lib/prisma";
-import { formatFullDate, getHorseIndexWithSkips } from "@/lib/utils";
+import { getHorseIndexWithSkips } from "@/lib/utils";
+import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 
 export default async function Home() {
@@ -11,11 +12,18 @@ export default async function Home() {
     const { currentIndex, skips } = globalState;
 
     const todaysHorse = await prisma.scheduledImage.findFirst({
-        where: { index: { gte: currentIndex + 2 } },
+        where: { index: { gte: currentIndex + 5 } },
         orderBy: { dateIngested: "asc" },
     });
 
     if (!todaysHorse) return notFound();
+
+    // if (!todaysHorse.published)
+    //     await prisma.scheduledImage.update({ where: { scheduledImageId: todaysHorse.scheduledImageId }, data: { published: new Date() } });
+
+    const session = await auth.api.getSession({ headers: await headers() });
+    let foundUser = null;
+    if (session) foundUser = (await prisma.user.findUnique({ where: { id: session?.user.id }, include: { favourites: true } })) ?? null;
 
     // if (todaysHorse.index != currentIndex)
     //     await prisma.globalState.update({
@@ -25,12 +33,8 @@ export default async function Home() {
 
     return (
         <div className="flex flex-col items-center justify-center">
-            <h1 className="text-2xl font-semibold mb-8 text-center">It's the {formatFullDate()}, here is your horse OwO</h1>
-            <DisplayHorse horse={todaysHorse} />
-
-            <h2 className="absolute bottom-0 text-lg font-semibold mb-2 text-center mt-4">
-                Next horse in <CountdownToMidnight />
-            </h2>
+            <DisplayHorse horse={todaysHorse} session={session} userFavourites={foundUser ? foundUser.favourites : undefined} />
+            <Footer />
         </div>
     );
 }

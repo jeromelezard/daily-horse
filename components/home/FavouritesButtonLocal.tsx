@@ -10,16 +10,12 @@ interface FavouritesButtonProps {
     toggleHeart: () => void;
 }
 
-export default function FavouritesButton({ scheduledImage, toggleHeart }: FavouritesButtonProps) {
+export default function FavouritesButtonLocal({ scheduledImage, toggleHeart }: FavouritesButtonProps) {
     const [added, setAdded] = useState(false);
-    const [userId, setUserId] = useState("");
     const [favourites, setFavourites] = useState<ScheduledImage[]>([]);
 
     useEffect(() => {
         if (typeof window !== "undefined") {
-            const storedId = localStorage.getItem("user_id");
-            if (storedId) setUserId(storedId);
-
             const favourites = localStorage.getItem("favourites");
             if (favourites) {
                 const favouritesArray: ScheduledImage[] = JSON.parse(favourites);
@@ -31,13 +27,6 @@ export default function FavouritesButton({ scheduledImage, toggleHeart }: Favour
     }, []);
 
     function toggleFavourite() {
-        // Check if this is a first time user.
-        if (!userId) {
-            const newId = crypto.randomUUID();
-            localStorage.setItem("user_id", newId);
-            setUserId(userId);
-        }
-        // Remove ID from local storage if already added.
         if (added) {
             localStorage.setItem("favourites", JSON.stringify(favourites.filter((fav) => fav.scheduledImageId != scheduledImage.scheduledImageId)));
             setFavourites((prevFavs) => prevFavs.filter((fav) => fav.scheduledImageId != scheduledImage.scheduledImageId));
@@ -45,7 +34,6 @@ export default function FavouritesButton({ scheduledImage, toggleHeart }: Favour
             return;
         }
 
-        // Ensure ID is not already in storage to avoid duplicates, then add
         if (!favourites.find((fav) => fav.scheduledImageId == scheduledImage.scheduledImageId)) {
             toggleHeart();
             localStorage.setItem("favourites", JSON.stringify([...favourites, scheduledImage]));

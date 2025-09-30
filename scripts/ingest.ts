@@ -99,18 +99,15 @@ async function ingestImages() {
 }
 
 async function checkTable() {
-    const id = crypto.randomUUID();
-    console.log(id);
-    // console.log(process.env.NEXT_PUBLIC_UNSPLASH_API_ENDPOINT);
-    // let ingestedCollection = await prisma.unsplashCollection.findUnique({
-    //   where: { collectionId: COLLECTION_ID },
-    //   include: { ingestedUnsplashImages: true },
-    // });
+    let ingestedCollection = await prisma.unsplashCollection.findUnique({
+        where: { collectionId: COLLECTION_ID },
+        include: { ingestedUnsplashImages: true },
+    });
 
-    // console.log(ingestedCollection?.ingestedUnsplashImages.length);
+    console.log("In collection: ", ingestedCollection?.ingestedUnsplashImages.length);
 
-    // const images = await prisma.ingestedUnsplashImage.count();
-    // console.log("count", images);
+    const images = await prisma.ingestedUnsplashImage.count();
+    console.log("count", images);
 }
 
 // ingestImages();

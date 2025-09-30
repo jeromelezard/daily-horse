@@ -5,28 +5,32 @@ import { AnimatePresence, cubicBezier, motion } from "framer-motion";
 import { ScheduledImage } from "@/lib/generated/prisma";
 import { useState } from "react";
 import { Heart } from "lucide-react";
-import FavouritesButton from "./FavouritesButton";
+import { BetterAuthSession } from "@/lib/types";
+import FavouritesButtonSession from "./FavouritesButtonSession";
+import FavouritesButtonLocal from "./FavouritesButtonLocal";
 
 interface DisplayHorseProps {
     horse: ScheduledImage;
+    session: BetterAuthSession | null;
+    userFavourites?: ScheduledImage[];
 }
+export const loadingVariants = {
+    initial: {
+        opacity: 0,
+    },
+    animate: {
+        opacity: 1,
+        transition: { duration: 2, ease: cubicBezier(0.16, 1, 0.3, 1) },
+    },
+    exit: {
+        opacity: 0,
+        transition: { duration: 0.2, ease: cubicBezier(0.7, 0, 0.84, 0) },
+    },
+};
 
-export default function DisplayHorse({ horse }: DisplayHorseProps) {
+export default function DisplayHorse({ horse, session, userFavourites = [] }: DisplayHorseProps) {
     const [portrait, setPortrait] = useState<boolean | null>(null);
     const [showHeart, setShowHeart] = useState(false);
-    const loadingVariants = {
-        initial: {
-            opacity: 0,
-        },
-        animate: {
-            opacity: 1,
-            transition: { duration: 2, ease: cubicBezier(0.16, 1, 0.3, 1) },
-        },
-        exit: {
-            opacity: 0,
-            transition: { duration: 0.2, ease: cubicBezier(0.7, 0, 0.84, 0) },
-        },
-    };
 
     function toggleHeart() {
         setShowHeart(true);
@@ -77,7 +81,17 @@ export default function DisplayHorse({ horse }: DisplayHorseProps) {
                         </motion.div>
                     )}
                 </AnimatePresence>
-                <FavouritesButton scheduledImage={horse} toggleHeart={toggleHeart} />
+
+                {session ? (
+                    <FavouritesButtonSession
+                        scheduledImage={horse}
+                        toggleHeart={toggleHeart}
+                        userFavourites={userFavourites}
+                        userId={session.user.id}
+                    />
+                ) : (
+                    <FavouritesButtonLocal scheduledImage={horse} toggleHeart={toggleHeart} />
+                )}
             </motion.div>
         </AnimatePresence>
     );
