@@ -33,6 +33,9 @@ export default async function Home() {
 
     return (
         <div className="flex flex-col items-center justify-center">
+            {/* <span> */}
+            {/* <h1>Here is your horse for today</h1> */}
+            {/* </span> */}
             <DisplayHorse horse={todaysHorse} session={session} userFavourites={foundUser ? foundUser.favourites : undefined} />
             <Footer />
         </div>

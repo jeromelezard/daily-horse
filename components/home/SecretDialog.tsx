@@ -33,7 +33,7 @@ export default function SecretDialog({ open, setOpen, userId }: DialogProps) {
 
                 setTimeout(() => {
                     router.push("/jasmine");
-                }, 1000);
+                }, 300);
             }
         } catch (error) {
             console.error(error);
@@ -41,7 +41,7 @@ export default function SecretDialog({ open, setOpen, userId }: DialogProps) {
     }
     return (
         <Dialog open={open} onOpenChange={setOpen}>
-            <DialogContent className="flex justify-center w-80">
+            <DialogContent className="flex justify-center w-80" aria-describedby={undefined}>
                 <DialogHeader hidden>
                     <DialogTitle>Enter passcode</DialogTitle>
                 </DialogHeader>

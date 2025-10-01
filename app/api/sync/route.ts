@@ -4,7 +4,6 @@ import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-    console.log("xd called");
     const session = await auth.api.getSession({ headers: req.headers });
     if (!session) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -12,7 +11,6 @@ export async function POST(req: Request) {
 
     const { data } = await req.json();
     const newFavourites = JSON.parse(data) as ScheduledImage[];
-    console.log("DATAXD", data);
 
     const currentUser = await prisma.user.findUnique({ where: { id: session.user.id }, include: { favourites: true } });
     if (!currentUser) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

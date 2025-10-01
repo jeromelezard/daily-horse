@@ -1,3 +1,4 @@
+import JasminePage from "@/components/jasmine/JasminePage";
 import { auth } from "@/lib/auth/auth";
 import { Role } from "@/lib/generated/prisma";
 
@@ -11,5 +12,5 @@ export default async function Jasmine() {
 
     if (!session || ((session.user.role as Role) != "Admin" && (session.user.role as Role) != "Jasmine")) return notFound();
 
-    return <div className="flex flex-col items-center justify-center">You aint done yet girl come back later for the real test x</div>;
+    return <JasminePage />;
 }
