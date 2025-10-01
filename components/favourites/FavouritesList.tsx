@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import Link from "next/link";
 
 interface FavouritesListProps {
     favourites: ScheduledImage[];
@@ -16,8 +17,8 @@ export default function FavouritesList({ favourites, removeFavourite }: Favourit
     const [animalToRemove, setAnimalToRemove] = useState("");
 
     return (
-        <div className="max-w-6xl mx-auto p-6">
-            <h1 className="text-3xl font-bold mb-6">Your Favourites</h1>
+        <div className="max-w-6xl mx-auto p-2">
+            <h1 className="text-3xl font-bold mb-6">Your favourites</h1>
 
             {favourites.length === 0 ? (
                 <p className="text-gray-600">No favourites yet. Go add some horseys!</p>
@@ -37,8 +38,9 @@ export default function FavouritesList({ favourites, removeFavourite }: Favourit
                             >
                                 <X className="h-5 w-5 text-gray-700" />
                             </button>
-
-                            <img src={fav.url} alt={`Animal from ${fav.published}`} className="w-full h-auto object-contain" />
+                            <Link href={fav.url} target="_blank">
+                                <img src={fav.url} alt={`Animal from ${fav.published}`} className="w-full h-auto object-contain" />
+                            </Link>
 
                             <div className="p-3 text-sm text-gray-700 font-semibold">
                                 {fav.published ? new Date(fav.published).toLocaleDateString() : "No date found"}
