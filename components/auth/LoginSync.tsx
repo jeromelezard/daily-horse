@@ -1,6 +1,7 @@
 "use client";
 
 import { useSession } from "@/lib/auth/auth-client";
+
 import { useEffect } from "react";
 
 export default function LoginSync() {
