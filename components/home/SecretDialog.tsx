@@ -45,7 +45,7 @@ export default function SecretDialog({ open, setOpen, userId }: DialogProps) {
                 <DialogHeader hidden>
                     <DialogTitle>Enter passcode</DialogTitle>
                 </DialogHeader>
-                <InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS} onChange={(value) => setCode(value)}>
+                <InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS} onChange={(value) => setCode(value)} inputMode="numeric">
                     <InputOTPGroup>
                         <InputOTPSlot index={0} />
                         <InputOTPSlot index={1} />

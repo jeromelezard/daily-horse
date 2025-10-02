@@ -76,7 +76,7 @@ export function HeaderDropdownMenu({ session }: { session: BetterAuthSession | n
                 </DropdownMenuContent>
             </DropdownMenu>
             <SignInDialog open={openDialog} setOpen={setOpenDialog} />
-            {session && <SecretDialog open={openSecretDialog} setOpen={setOpenSecretDialog} userId={session.user.id} />}
+            {session ? <SecretDialog open={openSecretDialog} setOpen={setOpenSecretDialog} userId={session.user.id} /> : null}
         </>
     );
 }
