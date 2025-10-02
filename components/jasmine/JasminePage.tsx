@@ -66,7 +66,7 @@ export default function JasminePage() {
                     <div>🥳🥳🥳🥳🥳🥳🥳🥳🥳</div>
                     <div className="font-semibold">Well done!!</div>
                     <a href="https://www.youtube.com/watch?v=j5a0jTc9S10" target="_blank" className="text-blue-500 underline">
-                        Click this link for your reward reward ❤️
+                        Click this link for your reward ❤️
                     </a>
                     <Image src={"/cutie.png"} alt="cutie" width={200} height={75} />
                 </motion.div>
