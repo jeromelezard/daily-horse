@@ -51,8 +51,7 @@ export default function JasminePage() {
                     ) : (
                         <SecondTest handleSecondTestComplete={secondTestComplete} secondStagePassed={secondStagePassed} />
                     )}
-
-                    <ThirdTest thirdTestComplete={thirdTestComplete} />
+                    {secondStagePassed ? <ThirdTest thirdTestComplete={thirdTestComplete} /> : null}
                 </motion.div>
             ) : (
                 <motion.div
