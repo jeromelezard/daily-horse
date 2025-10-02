@@ -13,7 +13,7 @@ export default function SecondTest({
 }) {
     const [phrase, setPhrase] = useState("");
     useEffect(() => {
-        if (phrase == process.env.NEXT_PUBLIC_SECRET_PHRASE) handleSecondTestComplete();
+        if (phrase.toLowerCase() == process.env.NEXT_PUBLIC_SECRET_PHRASE) handleSecondTestComplete();
     }, [phrase]);
     return (
         <>
@@ -27,7 +27,7 @@ export default function SecondTest({
                 pattern={REGEXP_ONLY_CHARS}
                 onChange={(value) => setPhrase(value)}
                 inputMode="text"
-                value={secondStagePassed ? process.env.NEXT_PUBLIC_SECRET_PHRASE : undefined}
+                value={secondStagePassed ? process.env.NEXT_PUBLIC_SECRET_PHRASE?.toUpperCase() : phrase.toUpperCase()}
             >
                 <InputOTPGroup>
                     <InputOTPSlot index={0} />

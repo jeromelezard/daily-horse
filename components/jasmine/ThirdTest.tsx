@@ -9,7 +9,7 @@ import { loadingVariants } from "../home/DisplayHorse";
 export default function ThirdTest({ thirdTestComplete }: { thirdTestComplete: () => void }) {
     const [phrase, setPhrase] = useState("");
     useEffect(() => {
-        if (phrase == process.env.NEXT_PUBLIC_SECOND_SECRET_PHRASE) thirdTestComplete();
+        if (phrase.toLowerCase() == process.env.NEXT_PUBLIC_SECOND_SECRET_PHRASE) thirdTestComplete();
     }, [phrase]);
     return (
         <AnimatePresence>
@@ -25,6 +25,7 @@ export default function ThirdTest({ thirdTestComplete }: { thirdTestComplete: ()
                     pattern={REGEXP_ONLY_CHARS}
                     onChange={(value) => setPhrase(value)}
                     inputMode="text"
+                    value={phrase.toUpperCase()}
                     className="flex flex-col justify-center items-center w-full"
                 >
                     <div className="flex flex-col justify-center items-center gap-3 text-center ml-4">
