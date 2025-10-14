@@ -2,7 +2,8 @@
 
 import { ScheduledImage } from "@/lib/generated/prisma";
 import { useEffect, useState } from "react";
-import FavouritesList from "./FavouritesList";
+
+import ImageList from "./ImageList";
 
 export default function FavouritesWithLocal() {
     const [favourites, setFavourites] = useState<ScheduledImage[]>([]);
@@ -23,5 +24,13 @@ export default function FavouritesWithLocal() {
         setFavourites((prevFavs) => prevFavs.filter((fav) => fav.scheduledImageId != animalId));
     }
 
-    return <FavouritesList favourites={favourites} removeFavourite={removeFavourite} />;
+    return (
+        <ImageList
+            images={favourites}
+            removeImage={removeFavourite}
+            withDialog
+            pageTitle="Your favourites"
+            notFoundMessage="No favourites yet. Go add some horseys!"
+        />
+    );
 }

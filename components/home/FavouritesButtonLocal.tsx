@@ -46,7 +46,7 @@ export default function FavouritesButtonLocal({ scheduledImage, toggleHeart }: F
         <motion.button
             onClick={toggleFavourite}
             whileTap={{ scale: 0.85 }}
-            className="absolute bottom-3 right-3 rounded-full bg-white/80 p-2 shadow-md hover:bg-white"
+            className="absolute bottom-3 right-3 rounded-full bg-white/80 p-2 shadow-md hover:bg-white cursor-pointer"
         >
             <Heart className={`h-6 w-6 transition-colors ${added ? "fill-red-500 text-red-500" : "text-gray-600"}`} />
         </motion.button>

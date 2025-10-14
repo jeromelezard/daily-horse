@@ -1,4 +1,4 @@
-import DisplayHorse from "@/components/home/DisplayHorse";
+import MainPage from "@/components/home/MainPage";
 import Footer from "@/components/layout/Footer";
 import { auth } from "@/lib/auth/auth";
 import { prisma } from "@/lib/prisma";
@@ -8,11 +8,10 @@ import { notFound } from "next/navigation";
 
 export default async function Home() {
     const globalState = await getHorseIndexWithSkips();
-    if (!globalState) return notFound();
     const { currentIndex, skips } = globalState;
 
     const todaysHorse = await prisma.scheduledImage.findFirst({
-        where: { index: { gte: currentIndex + skips } },
+        where: { index: { gte: currentIndex } },
         orderBy: { dateIngested: "asc" },
     });
 
@@ -33,7 +32,7 @@ export default async function Home() {
 
     return (
         <div className="flex flex-col items-center justify-center">
-            <DisplayHorse horse={todaysHorse} session={session} userFavourites={foundUser ? foundUser.favourites : undefined} />
+            <MainPage horse={todaysHorse} session={session} userFavourites={foundUser ? foundUser.favourites : undefined} />
             <Footer />
         </div>
     );

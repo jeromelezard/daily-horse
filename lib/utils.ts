@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { prisma } from "./prisma";
 import { Provider } from "./generated/prisma";
 import { faApple, faGoogle, faMicrosoft } from "@fortawesome/free-brands-svg-icons";
+import { notFound } from "next/navigation";
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -47,11 +48,11 @@ export function formatFullDate(date: Date = new Date()): string {
 export async function getHorseIndexWithSkips(): Promise<{
     currentIndex: number;
     skips: number;
-} | null> {
+}> {
     const globalState = await prisma.globalState.findUnique({
         where: { category: "Horse" },
     });
-    if (!globalState) return null;
+    if (!globalState) return notFound();
     return {
         currentIndex: daysSince(globalState.startDate) + 1 + globalState.skips,
         skips: globalState.skips,

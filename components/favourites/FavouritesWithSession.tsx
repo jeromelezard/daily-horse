@@ -1,9 +1,9 @@
-import FavouritesList from "./FavouritesList";
 import { BetterAuthSession } from "@/lib/types";
 import { prisma } from "@/lib/prisma";
 import ErrorLayout from "../error";
 import { revalidatePath } from "next/cache";
 import { toggleUserFavourite } from "@/lib/auth/utils";
+import ImageList from "./ImageList";
 
 export default async function FavouritesWithSession({ session }: { session: BetterAuthSession }) {
     const user = await prisma.user.findUnique({ where: { id: session.user.id }, include: { favourites: true } });
@@ -16,5 +16,13 @@ export default async function FavouritesWithSession({ session }: { session: Bett
         revalidatePath("/favourites");
     }
 
-    return <FavouritesList favourites={favourites} removeFavourite={removeFavourite} />;
+    return (
+        <ImageList
+            images={favourites}
+            removeImage={removeFavourite}
+            withDialog
+            pageTitle="Your favourites"
+            notFoundMessage="No favourites yet. Go add some horseys!"
+        />
+    );
 }

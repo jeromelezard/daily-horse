@@ -10,7 +10,7 @@ import {
     DropdownMenuTrigger,
     DropdownMenuShortcut,
 } from "@/components/ui/dropdown-menu";
-import { faBars, faHeart, faUser, faUserSecret } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faBoxArchive, faHeart, faUser, faUserSecret } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useState } from "react";
@@ -40,7 +40,7 @@ export function HeaderDropdownMenu({ session }: { session: BetterAuthSession | n
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className=" border-[1px] border-slate-200 mx-1 text-slate-700 " align="start">
                     <DropdownMenuGroup>
-                        <Link href={"/favourites"}>
+                        <Link href="/favourites">
                             <DropdownMenuItem>
                                 Your favs
                                 <DropdownMenuShortcut>
@@ -56,6 +56,14 @@ export function HeaderDropdownMenu({ session }: { session: BetterAuthSession | n
                                 </DropdownMenuShortcut>
                             </DropdownMenuItem>
                         )}
+                        <Link href="/archive">
+                            <DropdownMenuItem>
+                                Archive
+                                <DropdownMenuShortcut>
+                                    <FontAwesomeIcon icon={faBoxArchive} className="text-gray-500 text-lg" />
+                                </DropdownMenuShortcut>
+                            </DropdownMenuItem>
+                        </Link>
                     </DropdownMenuGroup>
                     <DropdownMenuSeparator />
                     {session ? (

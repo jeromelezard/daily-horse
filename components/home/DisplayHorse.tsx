@@ -2,18 +2,12 @@
 
 import Image from "next/image";
 import { AnimatePresence, cubicBezier, motion } from "framer-motion";
-import { ScheduledImage } from "@/lib/generated/prisma";
 import { useState } from "react";
 import { Heart } from "lucide-react";
-import { BetterAuthSession } from "@/lib/types";
 import FavouritesButtonSession from "./FavouritesButtonSession";
 import FavouritesButtonLocal from "./FavouritesButtonLocal";
+import { DisplayHorseProps } from "./MainPage";
 
-interface DisplayHorseProps {
-    horse: ScheduledImage;
-    session: BetterAuthSession | null;
-    userFavourites?: ScheduledImage[];
-}
 export const loadingVariants = {
     initial: {
         opacity: 0,
