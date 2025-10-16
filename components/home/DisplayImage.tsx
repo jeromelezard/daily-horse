@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Heart } from "lucide-react";
 import FavouritesButtonSession from "./FavouritesButtonSession";
 import FavouritesButtonLocal from "./FavouritesButtonLocal";
-import { DisplayHorseProps } from "./MainPage";
+import { DisplayImageProps } from "./MainPage";
 
 export const loadingVariants = {
     initial: {
@@ -22,7 +22,7 @@ export const loadingVariants = {
     },
 };
 
-export default function DisplayHorse({ horse, session, userFavourites = [] }: DisplayHorseProps) {
+export default function DisplayImage({ image, session, userFavourites = [] }: DisplayImageProps) {
     const [portrait, setPortrait] = useState<boolean | null>(null);
     const [showHeart, setShowHeart] = useState(false);
 
@@ -34,8 +34,8 @@ export default function DisplayHorse({ horse, session, userFavourites = [] }: Di
     return (
         <AnimatePresence>
             <motion.div
-                key="horse1"
-                id="horse"
+                key="animal1"
+                id="animal"
                 className={`${!portrait && "w-full"} relative max-w-5xl max-h-[80vh] flex justify-center`}
                 variants={loadingVariants}
                 initial="initial"
@@ -43,7 +43,7 @@ export default function DisplayHorse({ horse, session, userFavourites = [] }: Di
                 exit="exit"
             >
                 <Image
-                    src={horse.url}
+                    src={image.url}
                     alt="Random picture"
                     width={1600}
                     height={1200}
@@ -78,13 +78,13 @@ export default function DisplayHorse({ horse, session, userFavourites = [] }: Di
 
                 {session ? (
                     <FavouritesButtonSession
-                        scheduledImage={horse}
+                        scheduledImage={image}
                         toggleHeart={toggleHeart}
                         userFavourites={userFavourites}
                         userId={session.user.id}
                     />
                 ) : (
-                    <FavouritesButtonLocal scheduledImage={horse} toggleHeart={toggleHeart} />
+                    <FavouritesButtonLocal scheduledImage={image} toggleHeart={toggleHeart} />
                 )}
             </motion.div>
         </AnimatePresence>

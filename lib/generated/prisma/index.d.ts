@@ -58,19 +58,22 @@ export type Verification = $Result.DefaultSelection<Prisma.$VerificationPayload>
  * Enums
  */
 export namespace $Enums {
-  export const ImageSource: {
+  export const AnimalType: {
+  Horse: 'Horse',
+  Bobby: 'Bobby',
+  Bunny: 'Bunny'
+};
+
+export type AnimalType = (typeof AnimalType)[keyof typeof AnimalType]
+
+
+export const ImageSource: {
   Unsplash: 'Unsplash',
+  GCP: 'GCP',
   Other: 'Other'
 };
 
 export type ImageSource = (typeof ImageSource)[keyof typeof ImageSource]
-
-
-export const AnimalType: {
-  Horse: 'Horse'
-};
-
-export type AnimalType = (typeof AnimalType)[keyof typeof AnimalType]
 
 
 export const Provider: {
@@ -92,13 +95,13 @@ export type Role = (typeof Role)[keyof typeof Role]
 
 }
 
-export type ImageSource = $Enums.ImageSource
-
-export const ImageSource: typeof $Enums.ImageSource
-
 export type AnimalType = $Enums.AnimalType
 
 export const AnimalType: typeof $Enums.AnimalType
+
+export type ImageSource = $Enums.ImageSource
+
+export const ImageSource: typeof $Enums.ImageSource
 
 export type Provider = $Enums.Provider
 
@@ -2745,6 +2748,7 @@ export namespace Prisma {
     url: string | null
     sourceId: string | null
     approved: boolean | null
+    animalType: $Enums.AnimalType | null
     collectionId: string | null
     dateIngested: Date | null
   }
@@ -2755,6 +2759,7 @@ export namespace Prisma {
     url: string | null
     sourceId: string | null
     approved: boolean | null
+    animalType: $Enums.AnimalType | null
     collectionId: string | null
     dateIngested: Date | null
   }
@@ -2765,6 +2770,7 @@ export namespace Prisma {
     url: number
     sourceId: number
     approved: number
+    animalType: number
     collectionId: number
     dateIngested: number
     _all: number
@@ -2777,6 +2783,7 @@ export namespace Prisma {
     url?: true
     sourceId?: true
     approved?: true
+    animalType?: true
     collectionId?: true
     dateIngested?: true
   }
@@ -2787,6 +2794,7 @@ export namespace Prisma {
     url?: true
     sourceId?: true
     approved?: true
+    animalType?: true
     collectionId?: true
     dateIngested?: true
   }
@@ -2797,6 +2805,7 @@ export namespace Prisma {
     url?: true
     sourceId?: true
     approved?: true
+    animalType?: true
     collectionId?: true
     dateIngested?: true
     _all?: true
@@ -2880,6 +2889,7 @@ export namespace Prisma {
     url: string
     sourceId: string
     approved: boolean | null
+    animalType: $Enums.AnimalType
     collectionId: string
     dateIngested: Date
     _count: IngestedUnsplashImageCountAggregateOutputType | null
@@ -2907,6 +2917,7 @@ export namespace Prisma {
     url?: boolean
     sourceId?: boolean
     approved?: boolean
+    animalType?: boolean
     collectionId?: boolean
     dateIngested?: boolean
     collection?: boolean | UnsplashCollectionDefaultArgs<ExtArgs>
@@ -2918,6 +2929,7 @@ export namespace Prisma {
     url?: boolean
     sourceId?: boolean
     approved?: boolean
+    animalType?: boolean
     collectionId?: boolean
     dateIngested?: boolean
     collection?: boolean | UnsplashCollectionDefaultArgs<ExtArgs>
@@ -2929,6 +2941,7 @@ export namespace Prisma {
     url?: boolean
     sourceId?: boolean
     approved?: boolean
+    animalType?: boolean
     collectionId?: boolean
     dateIngested?: boolean
     collection?: boolean | UnsplashCollectionDefaultArgs<ExtArgs>
@@ -2940,11 +2953,12 @@ export namespace Prisma {
     url?: boolean
     sourceId?: boolean
     approved?: boolean
+    animalType?: boolean
     collectionId?: boolean
     dateIngested?: boolean
   }
 
-  export type IngestedUnsplashImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"ingestedImageId" | "source" | "url" | "sourceId" | "approved" | "collectionId" | "dateIngested", ExtArgs["result"]["ingestedUnsplashImage"]>
+  export type IngestedUnsplashImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"ingestedImageId" | "source" | "url" | "sourceId" | "approved" | "animalType" | "collectionId" | "dateIngested", ExtArgs["result"]["ingestedUnsplashImage"]>
   export type IngestedUnsplashImageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     collection?: boolean | UnsplashCollectionDefaultArgs<ExtArgs>
   }
@@ -2966,6 +2980,7 @@ export namespace Prisma {
       url: string
       sourceId: string
       approved: boolean | null
+      animalType: $Enums.AnimalType
       collectionId: string
       dateIngested: Date
     }, ExtArgs["result"]["ingestedUnsplashImage"]>
@@ -3397,6 +3412,7 @@ export namespace Prisma {
     readonly url: FieldRef<"IngestedUnsplashImage", 'String'>
     readonly sourceId: FieldRef<"IngestedUnsplashImage", 'String'>
     readonly approved: FieldRef<"IngestedUnsplashImage", 'Boolean'>
+    readonly animalType: FieldRef<"IngestedUnsplashImage", 'AnimalType'>
     readonly collectionId: FieldRef<"IngestedUnsplashImage", 'String'>
     readonly dateIngested: FieldRef<"IngestedUnsplashImage", 'DateTime'>
   }
@@ -3841,6 +3857,7 @@ export namespace Prisma {
     published: Date | null
     collectionId: string | null
     dateIngested: Date | null
+    animalType: $Enums.AnimalType | null
     index: number | null
   }
 
@@ -3852,6 +3869,7 @@ export namespace Prisma {
     published: Date | null
     collectionId: string | null
     dateIngested: Date | null
+    animalType: $Enums.AnimalType | null
     index: number | null
   }
 
@@ -3863,6 +3881,7 @@ export namespace Prisma {
     published: number
     collectionId: number
     dateIngested: number
+    animalType: number
     index: number
     _all: number
   }
@@ -3884,6 +3903,7 @@ export namespace Prisma {
     published?: true
     collectionId?: true
     dateIngested?: true
+    animalType?: true
     index?: true
   }
 
@@ -3895,6 +3915,7 @@ export namespace Prisma {
     published?: true
     collectionId?: true
     dateIngested?: true
+    animalType?: true
     index?: true
   }
 
@@ -3906,6 +3927,7 @@ export namespace Prisma {
     published?: true
     collectionId?: true
     dateIngested?: true
+    animalType?: true
     index?: true
     _all?: true
   }
@@ -4000,11 +4022,12 @@ export namespace Prisma {
     scheduledImageId: string
     source: $Enums.ImageSource
     url: string
-    sourceId: string
+    sourceId: string | null
     published: Date | null
-    collectionId: string
+    collectionId: string | null
     dateIngested: Date
-    index: number
+    animalType: $Enums.AnimalType
+    index: number | null
     _count: ScheduledImageCountAggregateOutputType | null
     _avg: ScheduledImageAvgAggregateOutputType | null
     _sum: ScheduledImageSumAggregateOutputType | null
@@ -4034,8 +4057,9 @@ export namespace Prisma {
     published?: boolean
     collectionId?: boolean
     dateIngested?: boolean
+    animalType?: boolean
     index?: boolean
-    collection?: boolean | UnsplashCollectionDefaultArgs<ExtArgs>
+    collection?: boolean | ScheduledImage$collectionArgs<ExtArgs>
     users?: boolean | ScheduledImage$usersArgs<ExtArgs>
     _count?: boolean | ScheduledImageCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["scheduledImage"]>
@@ -4048,8 +4072,9 @@ export namespace Prisma {
     published?: boolean
     collectionId?: boolean
     dateIngested?: boolean
+    animalType?: boolean
     index?: boolean
-    collection?: boolean | UnsplashCollectionDefaultArgs<ExtArgs>
+    collection?: boolean | ScheduledImage$collectionArgs<ExtArgs>
   }, ExtArgs["result"]["scheduledImage"]>
 
   export type ScheduledImageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4060,8 +4085,9 @@ export namespace Prisma {
     published?: boolean
     collectionId?: boolean
     dateIngested?: boolean
+    animalType?: boolean
     index?: boolean
-    collection?: boolean | UnsplashCollectionDefaultArgs<ExtArgs>
+    collection?: boolean | ScheduledImage$collectionArgs<ExtArgs>
   }, ExtArgs["result"]["scheduledImage"]>
 
   export type ScheduledImageSelectScalar = {
@@ -4072,37 +4098,39 @@ export namespace Prisma {
     published?: boolean
     collectionId?: boolean
     dateIngested?: boolean
+    animalType?: boolean
     index?: boolean
   }
 
-  export type ScheduledImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"scheduledImageId" | "source" | "url" | "sourceId" | "published" | "collectionId" | "dateIngested" | "index", ExtArgs["result"]["scheduledImage"]>
+  export type ScheduledImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"scheduledImageId" | "source" | "url" | "sourceId" | "published" | "collectionId" | "dateIngested" | "animalType" | "index", ExtArgs["result"]["scheduledImage"]>
   export type ScheduledImageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    collection?: boolean | UnsplashCollectionDefaultArgs<ExtArgs>
+    collection?: boolean | ScheduledImage$collectionArgs<ExtArgs>
     users?: boolean | ScheduledImage$usersArgs<ExtArgs>
     _count?: boolean | ScheduledImageCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ScheduledImageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    collection?: boolean | UnsplashCollectionDefaultArgs<ExtArgs>
+    collection?: boolean | ScheduledImage$collectionArgs<ExtArgs>
   }
   export type ScheduledImageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    collection?: boolean | UnsplashCollectionDefaultArgs<ExtArgs>
+    collection?: boolean | ScheduledImage$collectionArgs<ExtArgs>
   }
 
   export type $ScheduledImagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ScheduledImage"
     objects: {
-      collection: Prisma.$UnsplashCollectionPayload<ExtArgs>
+      collection: Prisma.$UnsplashCollectionPayload<ExtArgs> | null
       users: Prisma.$UserPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       scheduledImageId: string
       source: $Enums.ImageSource
       url: string
-      sourceId: string
+      sourceId: string | null
       published: Date | null
-      collectionId: string
+      collectionId: string | null
       dateIngested: Date
-      index: number
+      animalType: $Enums.AnimalType
+      index: number | null
     }, ExtArgs["result"]["scheduledImage"]>
     composites: {}
   }
@@ -4497,7 +4525,7 @@ export namespace Prisma {
    */
   export interface Prisma__ScheduledImageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    collection<T extends UnsplashCollectionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UnsplashCollectionDefaultArgs<ExtArgs>>): Prisma__UnsplashCollectionClient<$Result.GetResult<Prisma.$UnsplashCollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    collection<T extends ScheduledImage$collectionArgs<ExtArgs> = {}>(args?: Subset<T, ScheduledImage$collectionArgs<ExtArgs>>): Prisma__UnsplashCollectionClient<$Result.GetResult<Prisma.$UnsplashCollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     users<T extends ScheduledImage$usersArgs<ExtArgs> = {}>(args?: Subset<T, ScheduledImage$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4535,6 +4563,7 @@ export namespace Prisma {
     readonly published: FieldRef<"ScheduledImage", 'DateTime'>
     readonly collectionId: FieldRef<"ScheduledImage", 'String'>
     readonly dateIngested: FieldRef<"ScheduledImage", 'DateTime'>
+    readonly animalType: FieldRef<"ScheduledImage", 'AnimalType'>
     readonly index: FieldRef<"ScheduledImage", 'Int'>
   }
     
@@ -4929,6 +4958,25 @@ export namespace Prisma {
      * Limit how many ScheduledImages to delete.
      */
     limit?: number
+  }
+
+  /**
+   * ScheduledImage.collection
+   */
+  export type ScheduledImage$collectionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UnsplashCollection
+     */
+    select?: UnsplashCollectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UnsplashCollection
+     */
+    omit?: UnsplashCollectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UnsplashCollectionInclude<ExtArgs> | null
+    where?: UnsplashCollectionWhereInput
   }
 
   /**
@@ -10454,6 +10502,7 @@ export namespace Prisma {
     url: 'url',
     sourceId: 'sourceId',
     approved: 'approved',
+    animalType: 'animalType',
     collectionId: 'collectionId',
     dateIngested: 'dateIngested'
   };
@@ -10469,6 +10518,7 @@ export namespace Prisma {
     published: 'published',
     collectionId: 'collectionId',
     dateIngested: 'dateIngested',
+    animalType: 'animalType',
     index: 'index'
   };
 
@@ -10609,6 +10659,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'AnimalType'
+   */
+  export type EnumAnimalTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AnimalType'>
+    
+
+
+  /**
+   * Reference to a field of type 'AnimalType[]'
+   */
+  export type ListEnumAnimalTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AnimalType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -10633,20 +10697,6 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'AnimalType'
-   */
-  export type EnumAnimalTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AnimalType'>
-    
-
-
-  /**
-   * Reference to a field of type 'AnimalType[]'
-   */
-  export type ListEnumAnimalTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AnimalType[]'>
     
 
 
@@ -10733,6 +10783,7 @@ export namespace Prisma {
     url?: StringFilter<"IngestedUnsplashImage"> | string
     sourceId?: StringFilter<"IngestedUnsplashImage"> | string
     approved?: BoolNullableFilter<"IngestedUnsplashImage"> | boolean | null
+    animalType?: EnumAnimalTypeFilter<"IngestedUnsplashImage"> | $Enums.AnimalType
     collectionId?: StringFilter<"IngestedUnsplashImage"> | string
     dateIngested?: DateTimeFilter<"IngestedUnsplashImage"> | Date | string
     collection?: XOR<UnsplashCollectionScalarRelationFilter, UnsplashCollectionWhereInput>
@@ -10744,6 +10795,7 @@ export namespace Prisma {
     url?: SortOrder
     sourceId?: SortOrder
     approved?: SortOrderInput | SortOrder
+    animalType?: SortOrder
     collectionId?: SortOrder
     dateIngested?: SortOrder
     collection?: UnsplashCollectionOrderByWithRelationInput
@@ -10758,6 +10810,7 @@ export namespace Prisma {
     source?: EnumImageSourceFilter<"IngestedUnsplashImage"> | $Enums.ImageSource
     url?: StringFilter<"IngestedUnsplashImage"> | string
     approved?: BoolNullableFilter<"IngestedUnsplashImage"> | boolean | null
+    animalType?: EnumAnimalTypeFilter<"IngestedUnsplashImage"> | $Enums.AnimalType
     collectionId?: StringFilter<"IngestedUnsplashImage"> | string
     dateIngested?: DateTimeFilter<"IngestedUnsplashImage"> | Date | string
     collection?: XOR<UnsplashCollectionScalarRelationFilter, UnsplashCollectionWhereInput>
@@ -10769,6 +10822,7 @@ export namespace Prisma {
     url?: SortOrder
     sourceId?: SortOrder
     approved?: SortOrderInput | SortOrder
+    animalType?: SortOrder
     collectionId?: SortOrder
     dateIngested?: SortOrder
     _count?: IngestedUnsplashImageCountOrderByAggregateInput
@@ -10785,6 +10839,7 @@ export namespace Prisma {
     url?: StringWithAggregatesFilter<"IngestedUnsplashImage"> | string
     sourceId?: StringWithAggregatesFilter<"IngestedUnsplashImage"> | string
     approved?: BoolNullableWithAggregatesFilter<"IngestedUnsplashImage"> | boolean | null
+    animalType?: EnumAnimalTypeWithAggregatesFilter<"IngestedUnsplashImage"> | $Enums.AnimalType
     collectionId?: StringWithAggregatesFilter<"IngestedUnsplashImage"> | string
     dateIngested?: DateTimeWithAggregatesFilter<"IngestedUnsplashImage"> | Date | string
   }
@@ -10796,12 +10851,13 @@ export namespace Prisma {
     scheduledImageId?: StringFilter<"ScheduledImage"> | string
     source?: EnumImageSourceFilter<"ScheduledImage"> | $Enums.ImageSource
     url?: StringFilter<"ScheduledImage"> | string
-    sourceId?: StringFilter<"ScheduledImage"> | string
+    sourceId?: StringNullableFilter<"ScheduledImage"> | string | null
     published?: DateTimeNullableFilter<"ScheduledImage"> | Date | string | null
-    collectionId?: StringFilter<"ScheduledImage"> | string
+    collectionId?: StringNullableFilter<"ScheduledImage"> | string | null
     dateIngested?: DateTimeFilter<"ScheduledImage"> | Date | string
-    index?: IntFilter<"ScheduledImage"> | number
-    collection?: XOR<UnsplashCollectionScalarRelationFilter, UnsplashCollectionWhereInput>
+    animalType?: EnumAnimalTypeFilter<"ScheduledImage"> | $Enums.AnimalType
+    index?: IntNullableFilter<"ScheduledImage"> | number | null
+    collection?: XOR<UnsplashCollectionNullableScalarRelationFilter, UnsplashCollectionWhereInput> | null
     users?: UserListRelationFilter
   }
 
@@ -10809,11 +10865,12 @@ export namespace Prisma {
     scheduledImageId?: SortOrder
     source?: SortOrder
     url?: SortOrder
-    sourceId?: SortOrder
+    sourceId?: SortOrderInput | SortOrder
     published?: SortOrderInput | SortOrder
-    collectionId?: SortOrder
+    collectionId?: SortOrderInput | SortOrder
     dateIngested?: SortOrder
-    index?: SortOrder
+    animalType?: SortOrder
+    index?: SortOrderInput | SortOrder
     collection?: UnsplashCollectionOrderByWithRelationInput
     users?: UserOrderByRelationAggregateInput
   }
@@ -10821,28 +10878,31 @@ export namespace Prisma {
   export type ScheduledImageWhereUniqueInput = Prisma.AtLeast<{
     scheduledImageId?: string
     sourceId?: string
-    index?: number
+    animalType_index?: ScheduledImageAnimalTypeIndexCompoundUniqueInput
     AND?: ScheduledImageWhereInput | ScheduledImageWhereInput[]
     OR?: ScheduledImageWhereInput[]
     NOT?: ScheduledImageWhereInput | ScheduledImageWhereInput[]
     source?: EnumImageSourceFilter<"ScheduledImage"> | $Enums.ImageSource
     url?: StringFilter<"ScheduledImage"> | string
     published?: DateTimeNullableFilter<"ScheduledImage"> | Date | string | null
-    collectionId?: StringFilter<"ScheduledImage"> | string
+    collectionId?: StringNullableFilter<"ScheduledImage"> | string | null
     dateIngested?: DateTimeFilter<"ScheduledImage"> | Date | string
-    collection?: XOR<UnsplashCollectionScalarRelationFilter, UnsplashCollectionWhereInput>
+    animalType?: EnumAnimalTypeFilter<"ScheduledImage"> | $Enums.AnimalType
+    index?: IntNullableFilter<"ScheduledImage"> | number | null
+    collection?: XOR<UnsplashCollectionNullableScalarRelationFilter, UnsplashCollectionWhereInput> | null
     users?: UserListRelationFilter
-  }, "scheduledImageId" | "sourceId" | "index">
+  }, "scheduledImageId" | "sourceId" | "animalType_index">
 
   export type ScheduledImageOrderByWithAggregationInput = {
     scheduledImageId?: SortOrder
     source?: SortOrder
     url?: SortOrder
-    sourceId?: SortOrder
+    sourceId?: SortOrderInput | SortOrder
     published?: SortOrderInput | SortOrder
-    collectionId?: SortOrder
+    collectionId?: SortOrderInput | SortOrder
     dateIngested?: SortOrder
-    index?: SortOrder
+    animalType?: SortOrder
+    index?: SortOrderInput | SortOrder
     _count?: ScheduledImageCountOrderByAggregateInput
     _avg?: ScheduledImageAvgOrderByAggregateInput
     _max?: ScheduledImageMaxOrderByAggregateInput
@@ -10857,11 +10917,12 @@ export namespace Prisma {
     scheduledImageId?: StringWithAggregatesFilter<"ScheduledImage"> | string
     source?: EnumImageSourceWithAggregatesFilter<"ScheduledImage"> | $Enums.ImageSource
     url?: StringWithAggregatesFilter<"ScheduledImage"> | string
-    sourceId?: StringWithAggregatesFilter<"ScheduledImage"> | string
+    sourceId?: StringNullableWithAggregatesFilter<"ScheduledImage"> | string | null
     published?: DateTimeNullableWithAggregatesFilter<"ScheduledImage"> | Date | string | null
-    collectionId?: StringWithAggregatesFilter<"ScheduledImage"> | string
+    collectionId?: StringNullableWithAggregatesFilter<"ScheduledImage"> | string | null
     dateIngested?: DateTimeWithAggregatesFilter<"ScheduledImage"> | Date | string
-    index?: IntWithAggregatesFilter<"ScheduledImage"> | number
+    animalType?: EnumAnimalTypeWithAggregatesFilter<"ScheduledImage"> | $Enums.AnimalType
+    index?: IntNullableWithAggregatesFilter<"ScheduledImage"> | number | null
   }
 
   export type GlobalStateWhereInput = {
@@ -11260,6 +11321,7 @@ export namespace Prisma {
     url: string
     sourceId: string
     approved?: boolean | null
+    animalType?: $Enums.AnimalType
     dateIngested?: Date | string
     collection: UnsplashCollectionCreateNestedOneWithoutIngestedUnsplashImagesInput
   }
@@ -11270,6 +11332,7 @@ export namespace Prisma {
     url: string
     sourceId: string
     approved?: boolean | null
+    animalType?: $Enums.AnimalType
     collectionId: string
     dateIngested?: Date | string
   }
@@ -11280,6 +11343,7 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     sourceId?: StringFieldUpdateOperationsInput | string
     approved?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    animalType?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
     dateIngested?: DateTimeFieldUpdateOperationsInput | Date | string
     collection?: UnsplashCollectionUpdateOneRequiredWithoutIngestedUnsplashImagesNestedInput
   }
@@ -11290,6 +11354,7 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     sourceId?: StringFieldUpdateOperationsInput | string
     approved?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    animalType?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
     collectionId?: StringFieldUpdateOperationsInput | string
     dateIngested?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11300,6 +11365,7 @@ export namespace Prisma {
     url: string
     sourceId: string
     approved?: boolean | null
+    animalType?: $Enums.AnimalType
     collectionId: string
     dateIngested?: Date | string
   }
@@ -11310,6 +11376,7 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     sourceId?: StringFieldUpdateOperationsInput | string
     approved?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    animalType?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
     dateIngested?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -11319,6 +11386,7 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     sourceId?: StringFieldUpdateOperationsInput | string
     approved?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    animalType?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
     collectionId?: StringFieldUpdateOperationsInput | string
     dateIngested?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11327,11 +11395,12 @@ export namespace Prisma {
     scheduledImageId?: string
     source: $Enums.ImageSource
     url: string
-    sourceId: string
+    sourceId?: string | null
     published?: Date | string | null
     dateIngested?: Date | string
-    index?: number
-    collection: UnsplashCollectionCreateNestedOneWithoutScheduledImageInput
+    animalType?: $Enums.AnimalType
+    index?: number | null
+    collection?: UnsplashCollectionCreateNestedOneWithoutScheduledImageInput
     users?: UserCreateNestedManyWithoutFavouritesInput
   }
 
@@ -11339,11 +11408,12 @@ export namespace Prisma {
     scheduledImageId?: string
     source: $Enums.ImageSource
     url: string
-    sourceId: string
+    sourceId?: string | null
     published?: Date | string | null
-    collectionId: string
+    collectionId?: string | null
     dateIngested?: Date | string
-    index?: number
+    animalType?: $Enums.AnimalType
+    index?: number | null
     users?: UserUncheckedCreateNestedManyWithoutFavouritesInput
   }
 
@@ -11351,10 +11421,12 @@ export namespace Prisma {
     scheduledImageId?: StringFieldUpdateOperationsInput | string
     source?: EnumImageSourceFieldUpdateOperationsInput | $Enums.ImageSource
     url?: StringFieldUpdateOperationsInput | string
-    sourceId?: StringFieldUpdateOperationsInput | string
+    sourceId?: NullableStringFieldUpdateOperationsInput | string | null
     published?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dateIngested?: DateTimeFieldUpdateOperationsInput | Date | string
-    collection?: UnsplashCollectionUpdateOneRequiredWithoutScheduledImageNestedInput
+    animalType?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
+    index?: NullableIntFieldUpdateOperationsInput | number | null
+    collection?: UnsplashCollectionUpdateOneWithoutScheduledImageNestedInput
     users?: UserUpdateManyWithoutFavouritesNestedInput
   }
 
@@ -11362,11 +11434,12 @@ export namespace Prisma {
     scheduledImageId?: StringFieldUpdateOperationsInput | string
     source?: EnumImageSourceFieldUpdateOperationsInput | $Enums.ImageSource
     url?: StringFieldUpdateOperationsInput | string
-    sourceId?: StringFieldUpdateOperationsInput | string
+    sourceId?: NullableStringFieldUpdateOperationsInput | string | null
     published?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    collectionId?: StringFieldUpdateOperationsInput | string
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     dateIngested?: DateTimeFieldUpdateOperationsInput | Date | string
-    index?: IntFieldUpdateOperationsInput | number
+    animalType?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
+    index?: NullableIntFieldUpdateOperationsInput | number | null
     users?: UserUncheckedUpdateManyWithoutFavouritesNestedInput
   }
 
@@ -11374,31 +11447,35 @@ export namespace Prisma {
     scheduledImageId?: string
     source: $Enums.ImageSource
     url: string
-    sourceId: string
+    sourceId?: string | null
     published?: Date | string | null
-    collectionId: string
+    collectionId?: string | null
     dateIngested?: Date | string
-    index?: number
+    animalType?: $Enums.AnimalType
+    index?: number | null
   }
 
   export type ScheduledImageUpdateManyMutationInput = {
     scheduledImageId?: StringFieldUpdateOperationsInput | string
     source?: EnumImageSourceFieldUpdateOperationsInput | $Enums.ImageSource
     url?: StringFieldUpdateOperationsInput | string
-    sourceId?: StringFieldUpdateOperationsInput | string
+    sourceId?: NullableStringFieldUpdateOperationsInput | string | null
     published?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dateIngested?: DateTimeFieldUpdateOperationsInput | Date | string
+    animalType?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
+    index?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ScheduledImageUncheckedUpdateManyInput = {
     scheduledImageId?: StringFieldUpdateOperationsInput | string
     source?: EnumImageSourceFieldUpdateOperationsInput | $Enums.ImageSource
     url?: StringFieldUpdateOperationsInput | string
-    sourceId?: StringFieldUpdateOperationsInput | string
+    sourceId?: NullableStringFieldUpdateOperationsInput | string | null
     published?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    collectionId?: StringFieldUpdateOperationsInput | string
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     dateIngested?: DateTimeFieldUpdateOperationsInput | Date | string
-    index?: IntFieldUpdateOperationsInput | number
+    animalType?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
+    index?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type GlobalStateCreateInput = {
@@ -11879,6 +11956,13 @@ export namespace Prisma {
     not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
+  export type EnumAnimalTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.AnimalType | EnumAnimalTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumAnimalTypeFilter<$PrismaModel> | $Enums.AnimalType
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -11906,6 +11990,7 @@ export namespace Prisma {
     url?: SortOrder
     sourceId?: SortOrder
     approved?: SortOrder
+    animalType?: SortOrder
     collectionId?: SortOrder
     dateIngested?: SortOrder
   }
@@ -11916,6 +12001,7 @@ export namespace Prisma {
     url?: SortOrder
     sourceId?: SortOrder
     approved?: SortOrder
+    animalType?: SortOrder
     collectionId?: SortOrder
     dateIngested?: SortOrder
   }
@@ -11926,6 +12012,7 @@ export namespace Prisma {
     url?: SortOrder
     sourceId?: SortOrder
     approved?: SortOrder
+    animalType?: SortOrder
     collectionId?: SortOrder
     dateIngested?: SortOrder
   }
@@ -11948,6 +12035,16 @@ export namespace Prisma {
     _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
+  export type EnumAnimalTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AnimalType | EnumAnimalTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumAnimalTypeWithAggregatesFilter<$PrismaModel> | $Enums.AnimalType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAnimalTypeFilter<$PrismaModel>
+    _max?: NestedEnumAnimalTypeFilter<$PrismaModel>
+  }
+
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -11962,6 +12059,21 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -11973,15 +12085,20 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type UnsplashCollectionNullableScalarRelationFilter = {
+    is?: UnsplashCollectionWhereInput | null
+    isNot?: UnsplashCollectionWhereInput | null
   }
 
   export type UserListRelationFilter = {
@@ -11994,6 +12111,11 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type ScheduledImageAnimalTypeIndexCompoundUniqueInput = {
+    animalType: $Enums.AnimalType
+    index: number
+  }
+
   export type ScheduledImageCountOrderByAggregateInput = {
     scheduledImageId?: SortOrder
     source?: SortOrder
@@ -12002,6 +12124,7 @@ export namespace Prisma {
     published?: SortOrder
     collectionId?: SortOrder
     dateIngested?: SortOrder
+    animalType?: SortOrder
     index?: SortOrder
   }
 
@@ -12017,6 +12140,7 @@ export namespace Prisma {
     published?: SortOrder
     collectionId?: SortOrder
     dateIngested?: SortOrder
+    animalType?: SortOrder
     index?: SortOrder
   }
 
@@ -12028,11 +12152,30 @@ export namespace Prisma {
     published?: SortOrder
     collectionId?: SortOrder
     dateIngested?: SortOrder
+    animalType?: SortOrder
     index?: SortOrder
   }
 
   export type ScheduledImageSumOrderByAggregateInput = {
     index?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -12049,7 +12192,23 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
     notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -12057,19 +12216,7 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type EnumAnimalTypeFilter<$PrismaModel = never> = {
-    equals?: $Enums.AnimalType | EnumAnimalTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumAnimalTypeFilter<$PrismaModel> | $Enums.AnimalType
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type GlobalStateCountOrderByAggregateInput = {
@@ -12103,29 +12250,20 @@ export namespace Prisma {
     skips?: SortOrder
   }
 
-  export type EnumAnimalTypeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.AnimalType | EnumAnimalTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumAnimalTypeWithAggregatesFilter<$PrismaModel> | $Enums.AnimalType
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumAnimalTypeFilter<$PrismaModel>
-    _max?: NestedEnumAnimalTypeFilter<$PrismaModel>
-  }
-
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type EnumRoleNullableFilter<$PrismaModel = never> = {
@@ -12186,24 +12324,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     role?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type EnumRoleNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -12435,6 +12555,10 @@ export namespace Prisma {
     set?: boolean | null
   }
 
+  export type EnumAnimalTypeFieldUpdateOperationsInput = {
+    set?: $Enums.AnimalType
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
@@ -12465,19 +12589,46 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
   }
 
-  export type UnsplashCollectionUpdateOneRequiredWithoutScheduledImageNestedInput = {
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type UnsplashCollectionUpdateOneWithoutScheduledImageNestedInput = {
     create?: XOR<UnsplashCollectionCreateWithoutScheduledImageInput, UnsplashCollectionUncheckedCreateWithoutScheduledImageInput>
     connectOrCreate?: UnsplashCollectionCreateOrConnectWithoutScheduledImageInput
     upsert?: UnsplashCollectionUpsertWithoutScheduledImageInput
+    disconnect?: UnsplashCollectionWhereInput | boolean
+    delete?: UnsplashCollectionWhereInput | boolean
     connect?: UnsplashCollectionWhereUniqueInput
     update?: XOR<XOR<UnsplashCollectionUpdateToOneWithWhereWithoutScheduledImageInput, UnsplashCollectionUpdateWithoutScheduledImageInput>, UnsplashCollectionUncheckedUpdateWithoutScheduledImageInput>
   }
 
   export type UserUpdateManyWithoutFavouritesNestedInput = {
+    create?: XOR<UserCreateWithoutFavouritesInput, UserUncheckedCreateWithoutFavouritesInput> | UserCreateWithoutFavouritesInput[] | UserUncheckedCreateWithoutFavouritesInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutFavouritesInput | UserCreateOrConnectWithoutFavouritesInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutFavouritesInput | UserUpsertWithWhereUniqueWithoutFavouritesInput[]
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutFavouritesInput | UserUpdateWithWhereUniqueWithoutFavouritesInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutFavouritesInput | UserUpdateManyWithWhereWithoutFavouritesInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
+  export type UserUncheckedUpdateManyWithoutFavouritesNestedInput = {
     create?: XOR<UserCreateWithoutFavouritesInput, UserUncheckedCreateWithoutFavouritesInput> | UserCreateWithoutFavouritesInput[] | UserUncheckedCreateWithoutFavouritesInput[]
     connectOrCreate?: UserCreateOrConnectWithoutFavouritesInput | UserCreateOrConnectWithoutFavouritesInput[]
     upsert?: UserUpsertWithWhereUniqueWithoutFavouritesInput | UserUpsertWithWhereUniqueWithoutFavouritesInput[]
@@ -12496,23 +12647,6 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type UserUncheckedUpdateManyWithoutFavouritesNestedInput = {
-    create?: XOR<UserCreateWithoutFavouritesInput, UserUncheckedCreateWithoutFavouritesInput> | UserCreateWithoutFavouritesInput[] | UserUncheckedCreateWithoutFavouritesInput[]
-    connectOrCreate?: UserCreateOrConnectWithoutFavouritesInput | UserCreateOrConnectWithoutFavouritesInput[]
-    upsert?: UserUpsertWithWhereUniqueWithoutFavouritesInput | UserUpsertWithWhereUniqueWithoutFavouritesInput[]
-    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    update?: UserUpdateWithWhereUniqueWithoutFavouritesInput | UserUpdateWithWhereUniqueWithoutFavouritesInput[]
-    updateMany?: UserUpdateManyWithWhereWithoutFavouritesInput | UserUpdateManyWithWhereWithoutFavouritesInput[]
-    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
-  }
-
-  export type EnumAnimalTypeFieldUpdateOperationsInput = {
-    set?: $Enums.AnimalType
   }
 
   export type SessionCreateNestedManyWithoutUserInput = {
@@ -12553,10 +12687,6 @@ export namespace Prisma {
     create?: XOR<ScheduledImageCreateWithoutUsersInput, ScheduledImageUncheckedCreateWithoutUsersInput> | ScheduledImageCreateWithoutUsersInput[] | ScheduledImageUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: ScheduledImageCreateOrConnectWithoutUsersInput | ScheduledImageCreateOrConnectWithoutUsersInput[]
     connect?: ScheduledImageWhereUniqueInput | ScheduledImageWhereUniqueInput[]
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type NullableEnumRoleFieldUpdateOperationsInput = {
@@ -12740,6 +12870,13 @@ export namespace Prisma {
     not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
+  export type NestedEnumAnimalTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.AnimalType | EnumAnimalTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumAnimalTypeFilter<$PrismaModel> | $Enums.AnimalType
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -12780,6 +12917,16 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedEnumAnimalTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AnimalType | EnumAnimalTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumAnimalTypeWithAggregatesFilter<$PrismaModel> | $Enums.AnimalType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAnimalTypeFilter<$PrismaModel>
+    _max?: NestedEnumAnimalTypeFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -12794,6 +12941,20 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -12803,6 +12964,23 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -12817,6 +12995,33 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -12846,59 +13051,11 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedEnumAnimalTypeFilter<$PrismaModel = never> = {
-    equals?: $Enums.AnimalType | EnumAnimalTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumAnimalTypeFilter<$PrismaModel> | $Enums.AnimalType
-  }
-
-  export type NestedEnumAnimalTypeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.AnimalType | EnumAnimalTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumAnimalTypeWithAggregatesFilter<$PrismaModel> | $Enums.AnimalType
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumAnimalTypeFilter<$PrismaModel>
-    _max?: NestedEnumAnimalTypeFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type NestedEnumRoleNullableFilter<$PrismaModel = never> = {
     equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel> | null
     in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel> | null
     notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel> | null
     not?: NestedEnumRoleNullableFilter<$PrismaModel> | $Enums.Role | null
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumRoleNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -12917,6 +13074,7 @@ export namespace Prisma {
     url: string
     sourceId: string
     approved?: boolean | null
+    animalType?: $Enums.AnimalType
     dateIngested?: Date | string
   }
 
@@ -12926,6 +13084,7 @@ export namespace Prisma {
     url: string
     sourceId: string
     approved?: boolean | null
+    animalType?: $Enums.AnimalType
     dateIngested?: Date | string
   }
 
@@ -12943,10 +13102,11 @@ export namespace Prisma {
     scheduledImageId?: string
     source: $Enums.ImageSource
     url: string
-    sourceId: string
+    sourceId?: string | null
     published?: Date | string | null
     dateIngested?: Date | string
-    index?: number
+    animalType?: $Enums.AnimalType
+    index?: number | null
     users?: UserCreateNestedManyWithoutFavouritesInput
   }
 
@@ -12954,10 +13114,11 @@ export namespace Prisma {
     scheduledImageId?: string
     source: $Enums.ImageSource
     url: string
-    sourceId: string
+    sourceId?: string | null
     published?: Date | string | null
     dateIngested?: Date | string
-    index?: number
+    animalType?: $Enums.AnimalType
+    index?: number | null
     users?: UserUncheckedCreateNestedManyWithoutFavouritesInput
   }
 
@@ -12996,6 +13157,7 @@ export namespace Prisma {
     url?: StringFilter<"IngestedUnsplashImage"> | string
     sourceId?: StringFilter<"IngestedUnsplashImage"> | string
     approved?: BoolNullableFilter<"IngestedUnsplashImage"> | boolean | null
+    animalType?: EnumAnimalTypeFilter<"IngestedUnsplashImage"> | $Enums.AnimalType
     collectionId?: StringFilter<"IngestedUnsplashImage"> | string
     dateIngested?: DateTimeFilter<"IngestedUnsplashImage"> | Date | string
   }
@@ -13023,11 +13185,12 @@ export namespace Prisma {
     scheduledImageId?: StringFilter<"ScheduledImage"> | string
     source?: EnumImageSourceFilter<"ScheduledImage"> | $Enums.ImageSource
     url?: StringFilter<"ScheduledImage"> | string
-    sourceId?: StringFilter<"ScheduledImage"> | string
+    sourceId?: StringNullableFilter<"ScheduledImage"> | string | null
     published?: DateTimeNullableFilter<"ScheduledImage"> | Date | string | null
-    collectionId?: StringFilter<"ScheduledImage"> | string
+    collectionId?: StringNullableFilter<"ScheduledImage"> | string | null
     dateIngested?: DateTimeFilter<"ScheduledImage"> | Date | string
-    index?: IntFilter<"ScheduledImage"> | number
+    animalType?: EnumAnimalTypeFilter<"ScheduledImage"> | $Enums.AnimalType
+    index?: IntNullableFilter<"ScheduledImage"> | number | null
   }
 
   export type UnsplashCollectionCreateWithoutIngestedUnsplashImagesInput = {
@@ -13245,22 +13408,24 @@ export namespace Prisma {
     scheduledImageId?: string
     source: $Enums.ImageSource
     url: string
-    sourceId: string
+    sourceId?: string | null
     published?: Date | string | null
     dateIngested?: Date | string
-    index?: number
-    collection: UnsplashCollectionCreateNestedOneWithoutScheduledImageInput
+    animalType?: $Enums.AnimalType
+    index?: number | null
+    collection?: UnsplashCollectionCreateNestedOneWithoutScheduledImageInput
   }
 
   export type ScheduledImageUncheckedCreateWithoutUsersInput = {
     scheduledImageId?: string
     source: $Enums.ImageSource
     url: string
-    sourceId: string
+    sourceId?: string | null
     published?: Date | string | null
-    collectionId: string
+    collectionId?: string | null
     dateIngested?: Date | string
-    index?: number
+    animalType?: $Enums.AnimalType
+    index?: number | null
   }
 
   export type ScheduledImageCreateOrConnectWithoutUsersInput = {
@@ -13491,6 +13656,7 @@ export namespace Prisma {
     url: string
     sourceId: string
     approved?: boolean | null
+    animalType?: $Enums.AnimalType
     dateIngested?: Date | string
   }
 
@@ -13498,10 +13664,11 @@ export namespace Prisma {
     scheduledImageId?: string
     source: $Enums.ImageSource
     url: string
-    sourceId: string
+    sourceId?: string | null
     published?: Date | string | null
     dateIngested?: Date | string
-    index?: number
+    animalType?: $Enums.AnimalType
+    index?: number | null
   }
 
   export type IngestedUnsplashImageUpdateWithoutCollectionInput = {
@@ -13510,6 +13677,7 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     sourceId?: StringFieldUpdateOperationsInput | string
     approved?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    animalType?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
     dateIngested?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -13519,6 +13687,7 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     sourceId?: StringFieldUpdateOperationsInput | string
     approved?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    animalType?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
     dateIngested?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -13528,6 +13697,7 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     sourceId?: StringFieldUpdateOperationsInput | string
     approved?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    animalType?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
     dateIngested?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -13535,9 +13705,11 @@ export namespace Prisma {
     scheduledImageId?: StringFieldUpdateOperationsInput | string
     source?: EnumImageSourceFieldUpdateOperationsInput | $Enums.ImageSource
     url?: StringFieldUpdateOperationsInput | string
-    sourceId?: StringFieldUpdateOperationsInput | string
+    sourceId?: NullableStringFieldUpdateOperationsInput | string | null
     published?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dateIngested?: DateTimeFieldUpdateOperationsInput | Date | string
+    animalType?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
+    index?: NullableIntFieldUpdateOperationsInput | number | null
     users?: UserUpdateManyWithoutFavouritesNestedInput
   }
 
@@ -13545,10 +13717,11 @@ export namespace Prisma {
     scheduledImageId?: StringFieldUpdateOperationsInput | string
     source?: EnumImageSourceFieldUpdateOperationsInput | $Enums.ImageSource
     url?: StringFieldUpdateOperationsInput | string
-    sourceId?: StringFieldUpdateOperationsInput | string
+    sourceId?: NullableStringFieldUpdateOperationsInput | string | null
     published?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dateIngested?: DateTimeFieldUpdateOperationsInput | Date | string
-    index?: IntFieldUpdateOperationsInput | number
+    animalType?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
+    index?: NullableIntFieldUpdateOperationsInput | number | null
     users?: UserUncheckedUpdateManyWithoutFavouritesNestedInput
   }
 
@@ -13556,10 +13729,11 @@ export namespace Prisma {
     scheduledImageId?: StringFieldUpdateOperationsInput | string
     source?: EnumImageSourceFieldUpdateOperationsInput | $Enums.ImageSource
     url?: StringFieldUpdateOperationsInput | string
-    sourceId?: StringFieldUpdateOperationsInput | string
+    sourceId?: NullableStringFieldUpdateOperationsInput | string | null
     published?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dateIngested?: DateTimeFieldUpdateOperationsInput | Date | string
-    index?: IntFieldUpdateOperationsInput | number
+    animalType?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
+    index?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type UserUpdateWithoutFavouritesInput = {
@@ -13703,32 +13877,36 @@ export namespace Prisma {
     scheduledImageId?: StringFieldUpdateOperationsInput | string
     source?: EnumImageSourceFieldUpdateOperationsInput | $Enums.ImageSource
     url?: StringFieldUpdateOperationsInput | string
-    sourceId?: StringFieldUpdateOperationsInput | string
+    sourceId?: NullableStringFieldUpdateOperationsInput | string | null
     published?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dateIngested?: DateTimeFieldUpdateOperationsInput | Date | string
-    collection?: UnsplashCollectionUpdateOneRequiredWithoutScheduledImageNestedInput
+    animalType?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
+    index?: NullableIntFieldUpdateOperationsInput | number | null
+    collection?: UnsplashCollectionUpdateOneWithoutScheduledImageNestedInput
   }
 
   export type ScheduledImageUncheckedUpdateWithoutUsersInput = {
     scheduledImageId?: StringFieldUpdateOperationsInput | string
     source?: EnumImageSourceFieldUpdateOperationsInput | $Enums.ImageSource
     url?: StringFieldUpdateOperationsInput | string
-    sourceId?: StringFieldUpdateOperationsInput | string
+    sourceId?: NullableStringFieldUpdateOperationsInput | string | null
     published?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    collectionId?: StringFieldUpdateOperationsInput | string
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     dateIngested?: DateTimeFieldUpdateOperationsInput | Date | string
-    index?: IntFieldUpdateOperationsInput | number
+    animalType?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
+    index?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ScheduledImageUncheckedUpdateManyWithoutUsersInput = {
     scheduledImageId?: StringFieldUpdateOperationsInput | string
     source?: EnumImageSourceFieldUpdateOperationsInput | $Enums.ImageSource
     url?: StringFieldUpdateOperationsInput | string
-    sourceId?: StringFieldUpdateOperationsInput | string
+    sourceId?: NullableStringFieldUpdateOperationsInput | string | null
     published?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    collectionId?: StringFieldUpdateOperationsInput | string
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     dateIngested?: DateTimeFieldUpdateOperationsInput | Date | string
-    index?: IntFieldUpdateOperationsInput | number
+    animalType?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
+    index?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
 

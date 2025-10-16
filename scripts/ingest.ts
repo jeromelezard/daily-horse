@@ -1,10 +1,13 @@
 // import * as dotenv from "dotenv";
 // dotenv.config();
 
+import { AnimalType } from "@/lib/generated/prisma";
 import { prisma } from "@/lib/prisma";
 
-const COLLECTION_ID = "2432560";
+// const COLLECTION_ID = "2432560"; HORSE ID KEEP
+const COLLECTION_ID = "e02AV_hPKAU";
 const IMAGES_PER_PAGE = 20;
+const ANIMAL_TYPE: AnimalType = "Bunny";
 
 async function ingestImages() {
     const collectionData = await fetch(`${process.env.NEXT_PUBLIC_UNSPLASH_API_ENDPOINT}/collections/${COLLECTION_ID}`, {
@@ -79,6 +82,7 @@ async function ingestImages() {
                         url: images[j].urls.regular,
                         source: "Unsplash",
                         collectionId: COLLECTION_ID,
+                        animalType: ANIMAL_TYPE,
                     },
                 });
             }
@@ -96,6 +100,7 @@ async function ingestImages() {
             return false;
         }
     }
+    return true;
 }
 
 async function checkTable() {
@@ -110,5 +115,5 @@ async function checkTable() {
     console.log("count", images);
 }
 
-// ingestImages();
-checkTable();
+ingestImages();
+// checkTable();

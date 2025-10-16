@@ -10,12 +10,14 @@ import { Provider } from "@/lib/types";
 import { Button } from "../ui/button";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { signIn } from "@/lib/auth/auth-actions";
+import { usePathname } from "next/navigation";
 
 export interface DialogProps {
     open: boolean;
     setOpen: Dispatch<SetStateAction<boolean>>;
 }
 export default function SignInDialog({ open, setOpen }: DialogProps) {
+    const pathname = usePathname();
     const [chosenProvider, setChosenProvider] = useState<Provider | null>(null);
 
     function isProviderEnabled(provider: Provider) {
@@ -27,7 +29,7 @@ export default function SignInDialog({ open, setOpen }: DialogProps) {
 
     async function signInSocial(provider: Provider) {
         setChosenProvider(provider);
-        await signIn(provider);
+        await signIn(provider, pathname);
     }
 
     useEffect(() => {

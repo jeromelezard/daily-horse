@@ -15,6 +15,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum AnimalType {
+  Horse
+  Bobby
+  Bunny
+}
+
 model UnsplashCollection {
   collectionId           String                  @id
   ingestionComplete      Boolean                 @default(false)
@@ -28,27 +34,32 @@ model IngestedUnsplashImage {
   url             String
   sourceId        String             @unique
   approved        Boolean?
+  animalType      AnimalType         @default(Horse)
   collectionId    String
   collection      UnsplashCollection @relation(fields: [collectionId], references: [collectionId], onDelete: Restrict, onUpdate: Cascade)
   dateIngested    DateTime           @default(now())
 }
 
 model ScheduledImage {
-  scheduledImageId String             @id @default(uuid())
+  scheduledImageId String              @id @default(uuid())
   source           ImageSource
   url              String
-  sourceId         String             @unique
+  sourceId         String?             @unique
   published        DateTime?
-  collectionId     String
-  collection       UnsplashCollection @relation(fields: [collectionId], references: [collectionId], onDelete: Restrict, onUpdate: Cascade)
-  dateIngested     DateTime           @default(now())
-  index            Int                @unique @default(autoincrement())
+  collectionId     String?
+  collection       UnsplashCollection? @relation(fields: [collectionId], references: [collectionId], onDelete: Restrict, onUpdate: Cascade)
+  dateIngested     DateTime            @default(now())
+  animalType       AnimalType          @default(Horse)
+  index            Int?
 
   users User[]
+
+  @@unique([animalType, index])
 }
 
 enum ImageSource {
   Unsplash
+  GCP
   Other
 }
 
@@ -57,10 +68,6 @@ model GlobalState {
   category      AnimalType @unique
   startDate     DateTime
   skips         Int        @default(0)
-}
-
-enum AnimalType {
-  Horse
 }
 
 model User {

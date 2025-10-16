@@ -1,18 +1,19 @@
 "use client";
-import type { IngestedUnsplashImage } from "@/lib/generated/prisma";
+import type { AnimalType, IngestedUnsplashImage } from "@/lib/generated/prisma";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import { getUnapprovedImageBatch, reviewImage } from "@/lib/ingest";
 import { Spinner } from "../ui/spinner";
 import { AnimatePresence, motion } from "framer-motion";
-import { loadingVariants } from "../home/DisplayHorse";
+import { loadingVariants } from "../home/DisplayImage";
 
 interface DisplayImageBatchProps {
     initialImages: IngestedUnsplashImage[];
+    animalType: AnimalType;
 }
 
-function DisplayImageBatch({ initialImages }: DisplayImageBatchProps) {
+function DisplayImageBatch({ initialImages, animalType }: DisplayImageBatchProps) {
     /**
      * FIRST HORSE: HFX5CB5PPPQ
      */
@@ -21,6 +22,8 @@ function DisplayImageBatch({ initialImages }: DisplayImageBatchProps) {
     const [imageBatch, setImageBatch] = useState(initialImages);
     const [portrait, setPortrait] = useState<boolean | null>(null);
     const [loading, setLoading] = useState(false);
+
+    const [finished, setFinished] = useState(false);
 
     const currentIndexRef = useRef(currentIndex);
     const imageBatchRef = useRef(imageBatch);
@@ -36,14 +39,15 @@ function DisplayImageBatch({ initialImages }: DisplayImageBatchProps) {
 
         if (!batch[index]) return;
 
-        await reviewImage(batch[index], approved);
+        await reviewImage(batch[index], approved, animalType);
 
         setCurrentIndex((prev) => prev + 1);
     }, []);
 
     useEffect(() => {
         async function handleBatch() {
-            const newBatch = await getUnapprovedImageBatch();
+            const newBatch = await getUnapprovedImageBatch(animalType);
+            if (newBatch.length == 0) setFinished(true);
             setImageBatch(newBatch);
             setCurrentIndex(0);
             setLoading(false);
@@ -98,7 +102,7 @@ function DisplayImageBatch({ initialImages }: DisplayImageBatchProps) {
                             />
                         </motion.div>
                     ) : (
-                        <Spinner />
+                        <>{finished ? "Ingest more images" : <Spinner />}</>
                     )}
                 </AnimatePresence>
                 <div className="flex gap-3 mt-3">

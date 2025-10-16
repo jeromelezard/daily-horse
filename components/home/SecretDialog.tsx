@@ -1,17 +1,16 @@
 "use client";
 
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { useRouter } from "next/navigation";
+import { DialogProps } from "../auth/SignInDialog";
 
-export interface DialogProps {
-    open: boolean;
-    setOpen: Dispatch<SetStateAction<boolean>>;
+interface SecretDialogProps extends DialogProps {
     userId: string;
 }
-export default function SecretDialog({ open, setOpen, userId }: DialogProps) {
+export default function SecretDialog({ open, setOpen, userId }: SecretDialogProps) {
     const router = useRouter();
     const [code, setCode] = useState("");
 

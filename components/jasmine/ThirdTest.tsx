@@ -4,7 +4,7 @@ import { REGEXP_ONLY_CHARS } from "input-otp";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { loadingVariants } from "../home/DisplayHorse";
+import { loadingVariants } from "../home/DisplayImage";
 
 export default function ThirdTest({ thirdTestComplete }: { thirdTestComplete: () => void }) {
     const [phrase, setPhrase] = useState("");

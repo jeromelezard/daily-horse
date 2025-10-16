@@ -5,11 +5,11 @@ import { redirect } from "next/navigation";
 import { Provider } from "../generated/prisma";
 import { headers } from "next/headers";
 
-export async function signIn(provider: Provider) {
+export async function signIn(provider: Provider, callbackURL: string) {
     const { url } = await auth.api.signInSocial({
         body: {
             provider: provider.toLowerCase(),
-            callbackURL: "/",
+            callbackURL,
         },
     });
 

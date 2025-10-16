@@ -15,20 +15,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useState } from "react";
 import SignInDialog from "../auth/SignInDialog";
-import { BetterAuthSession } from "@/lib/types";
+import { BetterAuthClientSession } from "@/lib/types";
 import Avatar from "../ui/avatar";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { signOut } from "@/lib/auth/auth-actions";
 import SecretDialog from "../home/SecretDialog";
 
-export function HeaderDropdownMenu({ session }: { session: BetterAuthSession | null }) {
-    const router = useRouter();
+interface HeaderDropdownMenuProps {
+    session: BetterAuthClientSession | null;
+    homeRoute: string;
+}
+
+export function HeaderDropdownMenu({ session, homeRoute }: HeaderDropdownMenuProps) {
     const [openDialog, setOpenDialog] = useState(false);
     const [openSecretDialog, setOpenSecretDialog] = useState(false);
 
     async function handleSignOut() {
         await signOut();
-        router.push("/");
+        redirect(`/${homeRoute}`);
     }
     return (
         <>
@@ -38,9 +42,9 @@ export function HeaderDropdownMenu({ session }: { session: BetterAuthSession | n
                         <FontAwesomeIcon icon={faBars} className="text-slate-700" />
                     </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className=" border-[1px] border-slate-200 mx-1 text-slate-700 " align="start">
+                <DropdownMenuContent className="border-[1px] border-slate-200 mx-1 text-slate-700" align="start">
                     <DropdownMenuGroup>
-                        <Link href="/favourites">
+                        <Link href={`/${homeRoute}/favourites`}>
                             <DropdownMenuItem>
                                 Your favs
                                 <DropdownMenuShortcut>
@@ -56,7 +60,8 @@ export function HeaderDropdownMenu({ session }: { session: BetterAuthSession | n
                                 </DropdownMenuShortcut>
                             </DropdownMenuItem>
                         )}
-                        <Link href="/archive">
+
+                        <Link href={`/${homeRoute}/archive`}>
                             <DropdownMenuItem>
                                 Archive
                                 <DropdownMenuShortcut>

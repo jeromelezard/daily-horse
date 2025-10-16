@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import SecondTest from "./SecondTest";
 import ThirdTest from "./ThirdTest";
 import { AnimatePresence, motion } from "framer-motion";
-import { loadingVariants } from "../home/DisplayHorse";
+import { loadingVariants } from "../home/DisplayImage";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";

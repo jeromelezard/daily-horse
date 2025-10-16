@@ -1,7 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { prisma } from "./prisma";
-import { Provider } from "./generated/prisma";
+import { AnimalType, Provider } from "./generated/prisma";
 import { faApple, faGoogle, faMicrosoft } from "@fortawesome/free-brands-svg-icons";
 import { notFound } from "next/navigation";
 
@@ -45,12 +45,12 @@ export function formatFullDate(date: Date = new Date()): string {
     return `${day}${getOrdinalSuffix(day)} of ${month}, ${year}`;
 }
 
-export async function getHorseIndexWithSkips(): Promise<{
+export async function getIndexWithSkips(category: AnimalType): Promise<{
     currentIndex: number;
     skips: number;
 }> {
     const globalState = await prisma.globalState.findUnique({
-        where: { category: "Horse" },
+        where: { category },
     });
     if (!globalState) return notFound();
     return {
@@ -68,4 +68,10 @@ export function getIconForProvider(provider: Provider) {
         case "Apple":
             return faApple;
     }
+}
+
+export const capitalise = (s: string) => s && s[0].toUpperCase() + s.slice(1);
+
+export function checkAnimalType(animalType: AnimalType) {
+    return Object.values(AnimalType).includes(animalType);
 }

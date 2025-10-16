@@ -1,29 +1,15 @@
 "use client";
 
 import { ScheduledImage } from "@/lib/generated/prisma";
-import DisplayHorse from "./DisplayHorse";
 import { BetterAuthSession } from "@/lib/types";
-import HorseFunctions from "./HorseFunctions";
-import { useEffect, useState } from "react";
+import DisplayImage from "./DisplayImage";
 
-export interface DisplayHorseProps {
-    horse: ScheduledImage;
+export interface DisplayImageProps {
+    image: ScheduledImage;
     session: BetterAuthSession | null;
     userFavourites?: ScheduledImage[];
 }
 
-export type HorseFood = "Carrot" | "Apple" | "Donut";
-
-export default function MainPage({ horse, session, userFavourites = [] }: DisplayHorseProps) {
-    const [iconStack, setIconStack] = useState<HorseFood[]>([]);
-    function feedAnimal(food: HorseFood) {
-        setIconStack((prevArray) => [...prevArray, food]);
-    }
-
-    return (
-        <>
-            <DisplayHorse horse={horse} session={session} userFavourites={userFavourites} />
-            {/* <HorseFunctions feedAnimal={feedAnimal} /> */}
-        </>
-    );
+export default function MainPage({ image, session, userFavourites = [] }: DisplayImageProps) {
+    return <DisplayImage image={image} session={session} userFavourites={userFavourites} />;
 }
