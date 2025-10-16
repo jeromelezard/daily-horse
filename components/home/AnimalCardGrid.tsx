@@ -17,7 +17,7 @@ export default function AnimalCardGrid({ animalType }: AnimalCardGridProps) {
                 initial="initial"
                 animate="animate"
                 exit="exit"
-                className="flex flex-col justify-center items-center gap-3 mt-3"
+                className="flex flex-col justify-center items-center gap-3 mt-3 pb-5"
             >
                 <h2 className="font-semibold">Check out our other daily animals!</h2>
 
