@@ -38,7 +38,7 @@ export default async function RootLayout({
                     <Header session={session} />
                     {children}
                 </main>
-                <LoginSync />
+                {/* <LoginSync /> */}
             </body>
         </html>
     );
