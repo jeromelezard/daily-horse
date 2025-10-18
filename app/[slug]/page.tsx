@@ -1,5 +1,5 @@
 import AnimalCardGrid from "@/components/home/AnimalCardGrid";
-import MainPage from "@/components/home/MainPage";
+import DisplayImage from "@/components/home/DisplayImage";
 import Timer from "@/components/layout/Timer";
 import { auth } from "@/lib/auth/auth";
 import { AnimalType } from "@/lib/generated/prisma";
@@ -41,11 +41,9 @@ export default async function AnimalPage({ params }: { params: Promise<{ slug: s
     }
     return (
         <div className="flex flex-col items-center justify-center">
-            <MainPage image={todaysImage} session={session} userFavourites={foundUser ? foundUser.favourites : undefined} />
+            <DisplayImage image={todaysImage} session={session} userFavourites={foundUser ? foundUser.favourites : undefined} />
             <Timer animal={animalType} />
-            {/* <div className="flex flex-col justify-center items-center  gap-3"> */}
             <AnimalCardGrid animalType={animalType} />
-            {/* </div> */}
         </div>
     );
 }

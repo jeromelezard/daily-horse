@@ -6,7 +6,14 @@ import { useState } from "react";
 import { Heart } from "lucide-react";
 import FavouritesButtonSession from "./FavouritesButtonSession";
 import FavouritesButtonLocal from "./FavouritesButtonLocal";
-import { DisplayImageProps } from "./MainPage";
+import { ScheduledImage } from "@/lib/generated/prisma";
+import { BetterAuthSession } from "@/lib/types";
+
+export interface DisplayImageProps {
+    image: ScheduledImage;
+    session: BetterAuthSession | null;
+    userFavourites?: ScheduledImage[];
+}
 
 export const loadingVariants = {
     initial: {
