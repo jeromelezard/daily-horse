@@ -6,12 +6,14 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "ingest-images": "npx tsx scripts/ingest.ts"
+    "ingest-images-unsplash": "npx tsx scripts/unsplash-ingest.ts",
+    "ingest-images-gcp": "npx tsx scripts/gcp-ingest.ts"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^7.0.1",
     "@fortawesome/free-solid-svg-icons": "^7.0.1",
     "@fortawesome/react-fontawesome": "^3.0.2",
+    "@google-cloud/storage": "^7.17.2",
     "@headlessui/react": "^2.2.9",
     "@prisma/client": "^6.16.1",
     "@radix-ui/react-dialog": "^1.1.15",

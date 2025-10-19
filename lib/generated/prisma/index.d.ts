@@ -14,6 +14,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
+ * Model GlobalState
+ * 
+ */
+export type GlobalState = $Result.DefaultSelection<Prisma.$GlobalStatePayload>
+/**
  * Model UnsplashCollection
  * 
  */
@@ -28,11 +33,6 @@ export type IngestedUnsplashImage = $Result.DefaultSelection<Prisma.$IngestedUns
  * 
  */
 export type ScheduledImage = $Result.DefaultSelection<Prisma.$ScheduledImagePayload>
-/**
- * Model GlobalState
- * 
- */
-export type GlobalState = $Result.DefaultSelection<Prisma.$GlobalStatePayload>
 /**
  * Model User
  * 
@@ -118,8 +118,8 @@ export const Role: typeof $Enums.Role
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more UnsplashCollections
- * const unsplashCollections = await prisma.unsplashCollection.findMany()
+ * // Fetch zero or more GlobalStates
+ * const globalStates = await prisma.globalState.findMany()
  * ```
  *
  *
@@ -139,8 +139,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more UnsplashCollections
-   * const unsplashCollections = await prisma.unsplashCollection.findMany()
+   * // Fetch zero or more GlobalStates
+   * const globalStates = await prisma.globalState.findMany()
    * ```
    *
    *
@@ -230,6 +230,16 @@ export class PrismaClient<
   }>>
 
       /**
+   * `prisma.globalState`: Exposes CRUD operations for the **GlobalState** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GlobalStates
+    * const globalStates = await prisma.globalState.findMany()
+    * ```
+    */
+  get globalState(): Prisma.GlobalStateDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.unsplashCollection`: Exposes CRUD operations for the **UnsplashCollection** model.
     * Example usage:
     * ```ts
@@ -258,16 +268,6 @@ export class PrismaClient<
     * ```
     */
   get scheduledImage(): Prisma.ScheduledImageDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.globalState`: Exposes CRUD operations for the **GlobalState** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more GlobalStates
-    * const globalStates = await prisma.globalState.findMany()
-    * ```
-    */
-  get globalState(): Prisma.GlobalStateDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
@@ -748,10 +748,10 @@ export namespace Prisma {
 
 
   export const ModelName: {
+    GlobalState: 'GlobalState',
     UnsplashCollection: 'UnsplashCollection',
     IngestedUnsplashImage: 'IngestedUnsplashImage',
     ScheduledImage: 'ScheduledImage',
-    GlobalState: 'GlobalState',
     User: 'User',
     Session: 'Session',
     Account: 'Account',
@@ -774,10 +774,84 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "unsplashCollection" | "ingestedUnsplashImage" | "scheduledImage" | "globalState" | "user" | "session" | "account" | "verification"
+      modelProps: "globalState" | "unsplashCollection" | "ingestedUnsplashImage" | "scheduledImage" | "user" | "session" | "account" | "verification"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
+      GlobalState: {
+        payload: Prisma.$GlobalStatePayload<ExtArgs>
+        fields: Prisma.GlobalStateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GlobalStateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GlobalStateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload>
+          }
+          findFirst: {
+            args: Prisma.GlobalStateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GlobalStateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload>
+          }
+          findMany: {
+            args: Prisma.GlobalStateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload>[]
+          }
+          create: {
+            args: Prisma.GlobalStateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload>
+          }
+          createMany: {
+            args: Prisma.GlobalStateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.GlobalStateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload>[]
+          }
+          delete: {
+            args: Prisma.GlobalStateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload>
+          }
+          update: {
+            args: Prisma.GlobalStateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload>
+          }
+          deleteMany: {
+            args: Prisma.GlobalStateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GlobalStateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.GlobalStateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload>[]
+          }
+          upsert: {
+            args: Prisma.GlobalStateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload>
+          }
+          aggregate: {
+            args: Prisma.GlobalStateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGlobalState>
+          }
+          groupBy: {
+            args: Prisma.GlobalStateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GlobalStateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GlobalStateCountArgs<ExtArgs>
+            result: $Utils.Optional<GlobalStateCountAggregateOutputType> | number
+          }
+        }
+      }
       UnsplashCollection: {
         payload: Prisma.$UnsplashCollectionPayload<ExtArgs>
         fields: Prisma.UnsplashCollectionFieldRefs
@@ -997,80 +1071,6 @@ export namespace Prisma {
           count: {
             args: Prisma.ScheduledImageCountArgs<ExtArgs>
             result: $Utils.Optional<ScheduledImageCountAggregateOutputType> | number
-          }
-        }
-      }
-      GlobalState: {
-        payload: Prisma.$GlobalStatePayload<ExtArgs>
-        fields: Prisma.GlobalStateFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.GlobalStateFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.GlobalStateFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload>
-          }
-          findFirst: {
-            args: Prisma.GlobalStateFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.GlobalStateFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload>
-          }
-          findMany: {
-            args: Prisma.GlobalStateFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload>[]
-          }
-          create: {
-            args: Prisma.GlobalStateCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload>
-          }
-          createMany: {
-            args: Prisma.GlobalStateCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.GlobalStateCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload>[]
-          }
-          delete: {
-            args: Prisma.GlobalStateDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload>
-          }
-          update: {
-            args: Prisma.GlobalStateUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload>
-          }
-          deleteMany: {
-            args: Prisma.GlobalStateDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.GlobalStateUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.GlobalStateUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload>[]
-          }
-          upsert: {
-            args: Prisma.GlobalStateUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GlobalStatePayload>
-          }
-          aggregate: {
-            args: Prisma.GlobalStateAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateGlobalState>
-          }
-          groupBy: {
-            args: Prisma.GlobalStateGroupByArgs<ExtArgs>
-            result: $Utils.Optional<GlobalStateGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.GlobalStateCountArgs<ExtArgs>
-            result: $Utils.Optional<GlobalStateCountAggregateOutputType> | number
           }
         }
       }
@@ -1466,10 +1466,10 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
+    globalState?: GlobalStateOmit
     unsplashCollection?: UnsplashCollectionOmit
     ingestedUnsplashImage?: IngestedUnsplashImageOmit
     scheduledImage?: ScheduledImageOmit
-    globalState?: GlobalStateOmit
     user?: UserOmit
     session?: SessionOmit
     account?: AccountOmit
@@ -1672,6 +1672,1065 @@ export namespace Prisma {
   /**
    * Models
    */
+
+  /**
+   * Model GlobalState
+   */
+
+  export type AggregateGlobalState = {
+    _count: GlobalStateCountAggregateOutputType | null
+    _avg: GlobalStateAvgAggregateOutputType | null
+    _sum: GlobalStateSumAggregateOutputType | null
+    _min: GlobalStateMinAggregateOutputType | null
+    _max: GlobalStateMaxAggregateOutputType | null
+  }
+
+  export type GlobalStateAvgAggregateOutputType = {
+    globalStateId: number | null
+    skips: number | null
+    shuffleOrder: number | null
+  }
+
+  export type GlobalStateSumAggregateOutputType = {
+    globalStateId: number | null
+    skips: number | null
+    shuffleOrder: number[]
+  }
+
+  export type GlobalStateMinAggregateOutputType = {
+    globalStateId: number | null
+    category: $Enums.AnimalType | null
+    startDate: Date | null
+    skips: number | null
+    cycleImages: boolean | null
+    dateShuffled: Date | null
+  }
+
+  export type GlobalStateMaxAggregateOutputType = {
+    globalStateId: number | null
+    category: $Enums.AnimalType | null
+    startDate: Date | null
+    skips: number | null
+    cycleImages: boolean | null
+    dateShuffled: Date | null
+  }
+
+  export type GlobalStateCountAggregateOutputType = {
+    globalStateId: number
+    category: number
+    startDate: number
+    skips: number
+    cycleImages: number
+    shuffleOrder: number
+    dateShuffled: number
+    _all: number
+  }
+
+
+  export type GlobalStateAvgAggregateInputType = {
+    globalStateId?: true
+    skips?: true
+    shuffleOrder?: true
+  }
+
+  export type GlobalStateSumAggregateInputType = {
+    globalStateId?: true
+    skips?: true
+    shuffleOrder?: true
+  }
+
+  export type GlobalStateMinAggregateInputType = {
+    globalStateId?: true
+    category?: true
+    startDate?: true
+    skips?: true
+    cycleImages?: true
+    dateShuffled?: true
+  }
+
+  export type GlobalStateMaxAggregateInputType = {
+    globalStateId?: true
+    category?: true
+    startDate?: true
+    skips?: true
+    cycleImages?: true
+    dateShuffled?: true
+  }
+
+  export type GlobalStateCountAggregateInputType = {
+    globalStateId?: true
+    category?: true
+    startDate?: true
+    skips?: true
+    cycleImages?: true
+    shuffleOrder?: true
+    dateShuffled?: true
+    _all?: true
+  }
+
+  export type GlobalStateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GlobalState to aggregate.
+     */
+    where?: GlobalStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GlobalStates to fetch.
+     */
+    orderBy?: GlobalStateOrderByWithRelationInput | GlobalStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GlobalStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GlobalStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GlobalStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GlobalStates
+    **/
+    _count?: true | GlobalStateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GlobalStateAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GlobalStateSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GlobalStateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GlobalStateMaxAggregateInputType
+  }
+
+  export type GetGlobalStateAggregateType<T extends GlobalStateAggregateArgs> = {
+        [P in keyof T & keyof AggregateGlobalState]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGlobalState[P]>
+      : GetScalarType<T[P], AggregateGlobalState[P]>
+  }
+
+
+
+
+  export type GlobalStateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GlobalStateWhereInput
+    orderBy?: GlobalStateOrderByWithAggregationInput | GlobalStateOrderByWithAggregationInput[]
+    by: GlobalStateScalarFieldEnum[] | GlobalStateScalarFieldEnum
+    having?: GlobalStateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GlobalStateCountAggregateInputType | true
+    _avg?: GlobalStateAvgAggregateInputType
+    _sum?: GlobalStateSumAggregateInputType
+    _min?: GlobalStateMinAggregateInputType
+    _max?: GlobalStateMaxAggregateInputType
+  }
+
+  export type GlobalStateGroupByOutputType = {
+    globalStateId: number
+    category: $Enums.AnimalType
+    startDate: Date
+    skips: number
+    cycleImages: boolean
+    shuffleOrder: number[]
+    dateShuffled: Date | null
+    _count: GlobalStateCountAggregateOutputType | null
+    _avg: GlobalStateAvgAggregateOutputType | null
+    _sum: GlobalStateSumAggregateOutputType | null
+    _min: GlobalStateMinAggregateOutputType | null
+    _max: GlobalStateMaxAggregateOutputType | null
+  }
+
+  type GetGlobalStateGroupByPayload<T extends GlobalStateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GlobalStateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GlobalStateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GlobalStateGroupByOutputType[P]>
+            : GetScalarType<T[P], GlobalStateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GlobalStateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    globalStateId?: boolean
+    category?: boolean
+    startDate?: boolean
+    skips?: boolean
+    cycleImages?: boolean
+    shuffleOrder?: boolean
+    dateShuffled?: boolean
+  }, ExtArgs["result"]["globalState"]>
+
+  export type GlobalStateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    globalStateId?: boolean
+    category?: boolean
+    startDate?: boolean
+    skips?: boolean
+    cycleImages?: boolean
+    shuffleOrder?: boolean
+    dateShuffled?: boolean
+  }, ExtArgs["result"]["globalState"]>
+
+  export type GlobalStateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    globalStateId?: boolean
+    category?: boolean
+    startDate?: boolean
+    skips?: boolean
+    cycleImages?: boolean
+    shuffleOrder?: boolean
+    dateShuffled?: boolean
+  }, ExtArgs["result"]["globalState"]>
+
+  export type GlobalStateSelectScalar = {
+    globalStateId?: boolean
+    category?: boolean
+    startDate?: boolean
+    skips?: boolean
+    cycleImages?: boolean
+    shuffleOrder?: boolean
+    dateShuffled?: boolean
+  }
+
+  export type GlobalStateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"globalStateId" | "category" | "startDate" | "skips" | "cycleImages" | "shuffleOrder" | "dateShuffled", ExtArgs["result"]["globalState"]>
+
+  export type $GlobalStatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GlobalState"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      globalStateId: number
+      category: $Enums.AnimalType
+      startDate: Date
+      skips: number
+      cycleImages: boolean
+      shuffleOrder: number[]
+      dateShuffled: Date | null
+    }, ExtArgs["result"]["globalState"]>
+    composites: {}
+  }
+
+  type GlobalStateGetPayload<S extends boolean | null | undefined | GlobalStateDefaultArgs> = $Result.GetResult<Prisma.$GlobalStatePayload, S>
+
+  type GlobalStateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<GlobalStateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: GlobalStateCountAggregateInputType | true
+    }
+
+  export interface GlobalStateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GlobalState'], meta: { name: 'GlobalState' } }
+    /**
+     * Find zero or one GlobalState that matches the filter.
+     * @param {GlobalStateFindUniqueArgs} args - Arguments to find a GlobalState
+     * @example
+     * // Get one GlobalState
+     * const globalState = await prisma.globalState.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends GlobalStateFindUniqueArgs>(args: SelectSubset<T, GlobalStateFindUniqueArgs<ExtArgs>>): Prisma__GlobalStateClient<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one GlobalState that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {GlobalStateFindUniqueOrThrowArgs} args - Arguments to find a GlobalState
+     * @example
+     * // Get one GlobalState
+     * const globalState = await prisma.globalState.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends GlobalStateFindUniqueOrThrowArgs>(args: SelectSubset<T, GlobalStateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GlobalStateClient<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GlobalState that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GlobalStateFindFirstArgs} args - Arguments to find a GlobalState
+     * @example
+     * // Get one GlobalState
+     * const globalState = await prisma.globalState.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends GlobalStateFindFirstArgs>(args?: SelectSubset<T, GlobalStateFindFirstArgs<ExtArgs>>): Prisma__GlobalStateClient<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GlobalState that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GlobalStateFindFirstOrThrowArgs} args - Arguments to find a GlobalState
+     * @example
+     * // Get one GlobalState
+     * const globalState = await prisma.globalState.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends GlobalStateFindFirstOrThrowArgs>(args?: SelectSubset<T, GlobalStateFindFirstOrThrowArgs<ExtArgs>>): Prisma__GlobalStateClient<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more GlobalStates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GlobalStateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GlobalStates
+     * const globalStates = await prisma.globalState.findMany()
+     * 
+     * // Get first 10 GlobalStates
+     * const globalStates = await prisma.globalState.findMany({ take: 10 })
+     * 
+     * // Only select the `globalStateId`
+     * const globalStateWithGlobalStateIdOnly = await prisma.globalState.findMany({ select: { globalStateId: true } })
+     * 
+     */
+    findMany<T extends GlobalStateFindManyArgs>(args?: SelectSubset<T, GlobalStateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a GlobalState.
+     * @param {GlobalStateCreateArgs} args - Arguments to create a GlobalState.
+     * @example
+     * // Create one GlobalState
+     * const GlobalState = await prisma.globalState.create({
+     *   data: {
+     *     // ... data to create a GlobalState
+     *   }
+     * })
+     * 
+     */
+    create<T extends GlobalStateCreateArgs>(args: SelectSubset<T, GlobalStateCreateArgs<ExtArgs>>): Prisma__GlobalStateClient<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many GlobalStates.
+     * @param {GlobalStateCreateManyArgs} args - Arguments to create many GlobalStates.
+     * @example
+     * // Create many GlobalStates
+     * const globalState = await prisma.globalState.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends GlobalStateCreateManyArgs>(args?: SelectSubset<T, GlobalStateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many GlobalStates and returns the data saved in the database.
+     * @param {GlobalStateCreateManyAndReturnArgs} args - Arguments to create many GlobalStates.
+     * @example
+     * // Create many GlobalStates
+     * const globalState = await prisma.globalState.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many GlobalStates and only return the `globalStateId`
+     * const globalStateWithGlobalStateIdOnly = await prisma.globalState.createManyAndReturn({
+     *   select: { globalStateId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends GlobalStateCreateManyAndReturnArgs>(args?: SelectSubset<T, GlobalStateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a GlobalState.
+     * @param {GlobalStateDeleteArgs} args - Arguments to delete one GlobalState.
+     * @example
+     * // Delete one GlobalState
+     * const GlobalState = await prisma.globalState.delete({
+     *   where: {
+     *     // ... filter to delete one GlobalState
+     *   }
+     * })
+     * 
+     */
+    delete<T extends GlobalStateDeleteArgs>(args: SelectSubset<T, GlobalStateDeleteArgs<ExtArgs>>): Prisma__GlobalStateClient<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one GlobalState.
+     * @param {GlobalStateUpdateArgs} args - Arguments to update one GlobalState.
+     * @example
+     * // Update one GlobalState
+     * const globalState = await prisma.globalState.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends GlobalStateUpdateArgs>(args: SelectSubset<T, GlobalStateUpdateArgs<ExtArgs>>): Prisma__GlobalStateClient<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more GlobalStates.
+     * @param {GlobalStateDeleteManyArgs} args - Arguments to filter GlobalStates to delete.
+     * @example
+     * // Delete a few GlobalStates
+     * const { count } = await prisma.globalState.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends GlobalStateDeleteManyArgs>(args?: SelectSubset<T, GlobalStateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GlobalStates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GlobalStateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GlobalStates
+     * const globalState = await prisma.globalState.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends GlobalStateUpdateManyArgs>(args: SelectSubset<T, GlobalStateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GlobalStates and returns the data updated in the database.
+     * @param {GlobalStateUpdateManyAndReturnArgs} args - Arguments to update many GlobalStates.
+     * @example
+     * // Update many GlobalStates
+     * const globalState = await prisma.globalState.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more GlobalStates and only return the `globalStateId`
+     * const globalStateWithGlobalStateIdOnly = await prisma.globalState.updateManyAndReturn({
+     *   select: { globalStateId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends GlobalStateUpdateManyAndReturnArgs>(args: SelectSubset<T, GlobalStateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one GlobalState.
+     * @param {GlobalStateUpsertArgs} args - Arguments to update or create a GlobalState.
+     * @example
+     * // Update or create a GlobalState
+     * const globalState = await prisma.globalState.upsert({
+     *   create: {
+     *     // ... data to create a GlobalState
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GlobalState we want to update
+     *   }
+     * })
+     */
+    upsert<T extends GlobalStateUpsertArgs>(args: SelectSubset<T, GlobalStateUpsertArgs<ExtArgs>>): Prisma__GlobalStateClient<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of GlobalStates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GlobalStateCountArgs} args - Arguments to filter GlobalStates to count.
+     * @example
+     * // Count the number of GlobalStates
+     * const count = await prisma.globalState.count({
+     *   where: {
+     *     // ... the filter for the GlobalStates we want to count
+     *   }
+     * })
+    **/
+    count<T extends GlobalStateCountArgs>(
+      args?: Subset<T, GlobalStateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GlobalStateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GlobalState.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GlobalStateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GlobalStateAggregateArgs>(args: Subset<T, GlobalStateAggregateArgs>): Prisma.PrismaPromise<GetGlobalStateAggregateType<T>>
+
+    /**
+     * Group by GlobalState.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GlobalStateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GlobalStateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GlobalStateGroupByArgs['orderBy'] }
+        : { orderBy?: GlobalStateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GlobalStateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGlobalStateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GlobalState model
+   */
+  readonly fields: GlobalStateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GlobalState.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GlobalStateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the GlobalState model
+   */
+  interface GlobalStateFieldRefs {
+    readonly globalStateId: FieldRef<"GlobalState", 'Int'>
+    readonly category: FieldRef<"GlobalState", 'AnimalType'>
+    readonly startDate: FieldRef<"GlobalState", 'DateTime'>
+    readonly skips: FieldRef<"GlobalState", 'Int'>
+    readonly cycleImages: FieldRef<"GlobalState", 'Boolean'>
+    readonly shuffleOrder: FieldRef<"GlobalState", 'Int[]'>
+    readonly dateShuffled: FieldRef<"GlobalState", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * GlobalState findUnique
+   */
+  export type GlobalStateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalState
+     */
+    select?: GlobalStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalState
+     */
+    omit?: GlobalStateOmit<ExtArgs> | null
+    /**
+     * Filter, which GlobalState to fetch.
+     */
+    where: GlobalStateWhereUniqueInput
+  }
+
+  /**
+   * GlobalState findUniqueOrThrow
+   */
+  export type GlobalStateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalState
+     */
+    select?: GlobalStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalState
+     */
+    omit?: GlobalStateOmit<ExtArgs> | null
+    /**
+     * Filter, which GlobalState to fetch.
+     */
+    where: GlobalStateWhereUniqueInput
+  }
+
+  /**
+   * GlobalState findFirst
+   */
+  export type GlobalStateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalState
+     */
+    select?: GlobalStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalState
+     */
+    omit?: GlobalStateOmit<ExtArgs> | null
+    /**
+     * Filter, which GlobalState to fetch.
+     */
+    where?: GlobalStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GlobalStates to fetch.
+     */
+    orderBy?: GlobalStateOrderByWithRelationInput | GlobalStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GlobalStates.
+     */
+    cursor?: GlobalStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GlobalStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GlobalStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GlobalStates.
+     */
+    distinct?: GlobalStateScalarFieldEnum | GlobalStateScalarFieldEnum[]
+  }
+
+  /**
+   * GlobalState findFirstOrThrow
+   */
+  export type GlobalStateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalState
+     */
+    select?: GlobalStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalState
+     */
+    omit?: GlobalStateOmit<ExtArgs> | null
+    /**
+     * Filter, which GlobalState to fetch.
+     */
+    where?: GlobalStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GlobalStates to fetch.
+     */
+    orderBy?: GlobalStateOrderByWithRelationInput | GlobalStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GlobalStates.
+     */
+    cursor?: GlobalStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GlobalStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GlobalStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GlobalStates.
+     */
+    distinct?: GlobalStateScalarFieldEnum | GlobalStateScalarFieldEnum[]
+  }
+
+  /**
+   * GlobalState findMany
+   */
+  export type GlobalStateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalState
+     */
+    select?: GlobalStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalState
+     */
+    omit?: GlobalStateOmit<ExtArgs> | null
+    /**
+     * Filter, which GlobalStates to fetch.
+     */
+    where?: GlobalStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GlobalStates to fetch.
+     */
+    orderBy?: GlobalStateOrderByWithRelationInput | GlobalStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GlobalStates.
+     */
+    cursor?: GlobalStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GlobalStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GlobalStates.
+     */
+    skip?: number
+    distinct?: GlobalStateScalarFieldEnum | GlobalStateScalarFieldEnum[]
+  }
+
+  /**
+   * GlobalState create
+   */
+  export type GlobalStateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalState
+     */
+    select?: GlobalStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalState
+     */
+    omit?: GlobalStateOmit<ExtArgs> | null
+    /**
+     * The data needed to create a GlobalState.
+     */
+    data: XOR<GlobalStateCreateInput, GlobalStateUncheckedCreateInput>
+  }
+
+  /**
+   * GlobalState createMany
+   */
+  export type GlobalStateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GlobalStates.
+     */
+    data: GlobalStateCreateManyInput | GlobalStateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GlobalState createManyAndReturn
+   */
+  export type GlobalStateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalState
+     */
+    select?: GlobalStateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalState
+     */
+    omit?: GlobalStateOmit<ExtArgs> | null
+    /**
+     * The data used to create many GlobalStates.
+     */
+    data: GlobalStateCreateManyInput | GlobalStateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GlobalState update
+   */
+  export type GlobalStateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalState
+     */
+    select?: GlobalStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalState
+     */
+    omit?: GlobalStateOmit<ExtArgs> | null
+    /**
+     * The data needed to update a GlobalState.
+     */
+    data: XOR<GlobalStateUpdateInput, GlobalStateUncheckedUpdateInput>
+    /**
+     * Choose, which GlobalState to update.
+     */
+    where: GlobalStateWhereUniqueInput
+  }
+
+  /**
+   * GlobalState updateMany
+   */
+  export type GlobalStateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GlobalStates.
+     */
+    data: XOR<GlobalStateUpdateManyMutationInput, GlobalStateUncheckedUpdateManyInput>
+    /**
+     * Filter which GlobalStates to update
+     */
+    where?: GlobalStateWhereInput
+    /**
+     * Limit how many GlobalStates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GlobalState updateManyAndReturn
+   */
+  export type GlobalStateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalState
+     */
+    select?: GlobalStateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalState
+     */
+    omit?: GlobalStateOmit<ExtArgs> | null
+    /**
+     * The data used to update GlobalStates.
+     */
+    data: XOR<GlobalStateUpdateManyMutationInput, GlobalStateUncheckedUpdateManyInput>
+    /**
+     * Filter which GlobalStates to update
+     */
+    where?: GlobalStateWhereInput
+    /**
+     * Limit how many GlobalStates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GlobalState upsert
+   */
+  export type GlobalStateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalState
+     */
+    select?: GlobalStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalState
+     */
+    omit?: GlobalStateOmit<ExtArgs> | null
+    /**
+     * The filter to search for the GlobalState to update in case it exists.
+     */
+    where: GlobalStateWhereUniqueInput
+    /**
+     * In case the GlobalState found by the `where` argument doesn't exist, create a new GlobalState with this data.
+     */
+    create: XOR<GlobalStateCreateInput, GlobalStateUncheckedCreateInput>
+    /**
+     * In case the GlobalState was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GlobalStateUpdateInput, GlobalStateUncheckedUpdateInput>
+  }
+
+  /**
+   * GlobalState delete
+   */
+  export type GlobalStateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalState
+     */
+    select?: GlobalStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalState
+     */
+    omit?: GlobalStateOmit<ExtArgs> | null
+    /**
+     * Filter which GlobalState to delete.
+     */
+    where: GlobalStateWhereUniqueInput
+  }
+
+  /**
+   * GlobalState deleteMany
+   */
+  export type GlobalStateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GlobalStates to delete
+     */
+    where?: GlobalStateWhereInput
+    /**
+     * Limit how many GlobalStates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * GlobalState without action
+   */
+  export type GlobalStateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalState
+     */
+    select?: GlobalStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalState
+     */
+    omit?: GlobalStateOmit<ExtArgs> | null
+  }
+
 
   /**
    * Model UnsplashCollection
@@ -5019,1026 +6078,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ScheduledImageInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model GlobalState
-   */
-
-  export type AggregateGlobalState = {
-    _count: GlobalStateCountAggregateOutputType | null
-    _avg: GlobalStateAvgAggregateOutputType | null
-    _sum: GlobalStateSumAggregateOutputType | null
-    _min: GlobalStateMinAggregateOutputType | null
-    _max: GlobalStateMaxAggregateOutputType | null
-  }
-
-  export type GlobalStateAvgAggregateOutputType = {
-    globalStateId: number | null
-    skips: number | null
-  }
-
-  export type GlobalStateSumAggregateOutputType = {
-    globalStateId: number | null
-    skips: number | null
-  }
-
-  export type GlobalStateMinAggregateOutputType = {
-    globalStateId: number | null
-    category: $Enums.AnimalType | null
-    startDate: Date | null
-    skips: number | null
-  }
-
-  export type GlobalStateMaxAggregateOutputType = {
-    globalStateId: number | null
-    category: $Enums.AnimalType | null
-    startDate: Date | null
-    skips: number | null
-  }
-
-  export type GlobalStateCountAggregateOutputType = {
-    globalStateId: number
-    category: number
-    startDate: number
-    skips: number
-    _all: number
-  }
-
-
-  export type GlobalStateAvgAggregateInputType = {
-    globalStateId?: true
-    skips?: true
-  }
-
-  export type GlobalStateSumAggregateInputType = {
-    globalStateId?: true
-    skips?: true
-  }
-
-  export type GlobalStateMinAggregateInputType = {
-    globalStateId?: true
-    category?: true
-    startDate?: true
-    skips?: true
-  }
-
-  export type GlobalStateMaxAggregateInputType = {
-    globalStateId?: true
-    category?: true
-    startDate?: true
-    skips?: true
-  }
-
-  export type GlobalStateCountAggregateInputType = {
-    globalStateId?: true
-    category?: true
-    startDate?: true
-    skips?: true
-    _all?: true
-  }
-
-  export type GlobalStateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which GlobalState to aggregate.
-     */
-    where?: GlobalStateWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of GlobalStates to fetch.
-     */
-    orderBy?: GlobalStateOrderByWithRelationInput | GlobalStateOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: GlobalStateWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` GlobalStates from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` GlobalStates.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned GlobalStates
-    **/
-    _count?: true | GlobalStateCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: GlobalStateAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: GlobalStateSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: GlobalStateMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: GlobalStateMaxAggregateInputType
-  }
-
-  export type GetGlobalStateAggregateType<T extends GlobalStateAggregateArgs> = {
-        [P in keyof T & keyof AggregateGlobalState]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateGlobalState[P]>
-      : GetScalarType<T[P], AggregateGlobalState[P]>
-  }
-
-
-
-
-  export type GlobalStateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: GlobalStateWhereInput
-    orderBy?: GlobalStateOrderByWithAggregationInput | GlobalStateOrderByWithAggregationInput[]
-    by: GlobalStateScalarFieldEnum[] | GlobalStateScalarFieldEnum
-    having?: GlobalStateScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: GlobalStateCountAggregateInputType | true
-    _avg?: GlobalStateAvgAggregateInputType
-    _sum?: GlobalStateSumAggregateInputType
-    _min?: GlobalStateMinAggregateInputType
-    _max?: GlobalStateMaxAggregateInputType
-  }
-
-  export type GlobalStateGroupByOutputType = {
-    globalStateId: number
-    category: $Enums.AnimalType
-    startDate: Date
-    skips: number
-    _count: GlobalStateCountAggregateOutputType | null
-    _avg: GlobalStateAvgAggregateOutputType | null
-    _sum: GlobalStateSumAggregateOutputType | null
-    _min: GlobalStateMinAggregateOutputType | null
-    _max: GlobalStateMaxAggregateOutputType | null
-  }
-
-  type GetGlobalStateGroupByPayload<T extends GlobalStateGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<GlobalStateGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof GlobalStateGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], GlobalStateGroupByOutputType[P]>
-            : GetScalarType<T[P], GlobalStateGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type GlobalStateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    globalStateId?: boolean
-    category?: boolean
-    startDate?: boolean
-    skips?: boolean
-  }, ExtArgs["result"]["globalState"]>
-
-  export type GlobalStateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    globalStateId?: boolean
-    category?: boolean
-    startDate?: boolean
-    skips?: boolean
-  }, ExtArgs["result"]["globalState"]>
-
-  export type GlobalStateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    globalStateId?: boolean
-    category?: boolean
-    startDate?: boolean
-    skips?: boolean
-  }, ExtArgs["result"]["globalState"]>
-
-  export type GlobalStateSelectScalar = {
-    globalStateId?: boolean
-    category?: boolean
-    startDate?: boolean
-    skips?: boolean
-  }
-
-  export type GlobalStateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"globalStateId" | "category" | "startDate" | "skips", ExtArgs["result"]["globalState"]>
-
-  export type $GlobalStatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "GlobalState"
-    objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      globalStateId: number
-      category: $Enums.AnimalType
-      startDate: Date
-      skips: number
-    }, ExtArgs["result"]["globalState"]>
-    composites: {}
-  }
-
-  type GlobalStateGetPayload<S extends boolean | null | undefined | GlobalStateDefaultArgs> = $Result.GetResult<Prisma.$GlobalStatePayload, S>
-
-  type GlobalStateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<GlobalStateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: GlobalStateCountAggregateInputType | true
-    }
-
-  export interface GlobalStateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GlobalState'], meta: { name: 'GlobalState' } }
-    /**
-     * Find zero or one GlobalState that matches the filter.
-     * @param {GlobalStateFindUniqueArgs} args - Arguments to find a GlobalState
-     * @example
-     * // Get one GlobalState
-     * const globalState = await prisma.globalState.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends GlobalStateFindUniqueArgs>(args: SelectSubset<T, GlobalStateFindUniqueArgs<ExtArgs>>): Prisma__GlobalStateClient<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one GlobalState that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {GlobalStateFindUniqueOrThrowArgs} args - Arguments to find a GlobalState
-     * @example
-     * // Get one GlobalState
-     * const globalState = await prisma.globalState.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends GlobalStateFindUniqueOrThrowArgs>(args: SelectSubset<T, GlobalStateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GlobalStateClient<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first GlobalState that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GlobalStateFindFirstArgs} args - Arguments to find a GlobalState
-     * @example
-     * // Get one GlobalState
-     * const globalState = await prisma.globalState.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends GlobalStateFindFirstArgs>(args?: SelectSubset<T, GlobalStateFindFirstArgs<ExtArgs>>): Prisma__GlobalStateClient<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first GlobalState that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GlobalStateFindFirstOrThrowArgs} args - Arguments to find a GlobalState
-     * @example
-     * // Get one GlobalState
-     * const globalState = await prisma.globalState.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends GlobalStateFindFirstOrThrowArgs>(args?: SelectSubset<T, GlobalStateFindFirstOrThrowArgs<ExtArgs>>): Prisma__GlobalStateClient<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more GlobalStates that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GlobalStateFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all GlobalStates
-     * const globalStates = await prisma.globalState.findMany()
-     * 
-     * // Get first 10 GlobalStates
-     * const globalStates = await prisma.globalState.findMany({ take: 10 })
-     * 
-     * // Only select the `globalStateId`
-     * const globalStateWithGlobalStateIdOnly = await prisma.globalState.findMany({ select: { globalStateId: true } })
-     * 
-     */
-    findMany<T extends GlobalStateFindManyArgs>(args?: SelectSubset<T, GlobalStateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a GlobalState.
-     * @param {GlobalStateCreateArgs} args - Arguments to create a GlobalState.
-     * @example
-     * // Create one GlobalState
-     * const GlobalState = await prisma.globalState.create({
-     *   data: {
-     *     // ... data to create a GlobalState
-     *   }
-     * })
-     * 
-     */
-    create<T extends GlobalStateCreateArgs>(args: SelectSubset<T, GlobalStateCreateArgs<ExtArgs>>): Prisma__GlobalStateClient<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many GlobalStates.
-     * @param {GlobalStateCreateManyArgs} args - Arguments to create many GlobalStates.
-     * @example
-     * // Create many GlobalStates
-     * const globalState = await prisma.globalState.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends GlobalStateCreateManyArgs>(args?: SelectSubset<T, GlobalStateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many GlobalStates and returns the data saved in the database.
-     * @param {GlobalStateCreateManyAndReturnArgs} args - Arguments to create many GlobalStates.
-     * @example
-     * // Create many GlobalStates
-     * const globalState = await prisma.globalState.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many GlobalStates and only return the `globalStateId`
-     * const globalStateWithGlobalStateIdOnly = await prisma.globalState.createManyAndReturn({
-     *   select: { globalStateId: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends GlobalStateCreateManyAndReturnArgs>(args?: SelectSubset<T, GlobalStateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a GlobalState.
-     * @param {GlobalStateDeleteArgs} args - Arguments to delete one GlobalState.
-     * @example
-     * // Delete one GlobalState
-     * const GlobalState = await prisma.globalState.delete({
-     *   where: {
-     *     // ... filter to delete one GlobalState
-     *   }
-     * })
-     * 
-     */
-    delete<T extends GlobalStateDeleteArgs>(args: SelectSubset<T, GlobalStateDeleteArgs<ExtArgs>>): Prisma__GlobalStateClient<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one GlobalState.
-     * @param {GlobalStateUpdateArgs} args - Arguments to update one GlobalState.
-     * @example
-     * // Update one GlobalState
-     * const globalState = await prisma.globalState.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends GlobalStateUpdateArgs>(args: SelectSubset<T, GlobalStateUpdateArgs<ExtArgs>>): Prisma__GlobalStateClient<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more GlobalStates.
-     * @param {GlobalStateDeleteManyArgs} args - Arguments to filter GlobalStates to delete.
-     * @example
-     * // Delete a few GlobalStates
-     * const { count } = await prisma.globalState.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends GlobalStateDeleteManyArgs>(args?: SelectSubset<T, GlobalStateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more GlobalStates.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GlobalStateUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many GlobalStates
-     * const globalState = await prisma.globalState.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends GlobalStateUpdateManyArgs>(args: SelectSubset<T, GlobalStateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more GlobalStates and returns the data updated in the database.
-     * @param {GlobalStateUpdateManyAndReturnArgs} args - Arguments to update many GlobalStates.
-     * @example
-     * // Update many GlobalStates
-     * const globalState = await prisma.globalState.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more GlobalStates and only return the `globalStateId`
-     * const globalStateWithGlobalStateIdOnly = await prisma.globalState.updateManyAndReturn({
-     *   select: { globalStateId: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends GlobalStateUpdateManyAndReturnArgs>(args: SelectSubset<T, GlobalStateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one GlobalState.
-     * @param {GlobalStateUpsertArgs} args - Arguments to update or create a GlobalState.
-     * @example
-     * // Update or create a GlobalState
-     * const globalState = await prisma.globalState.upsert({
-     *   create: {
-     *     // ... data to create a GlobalState
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the GlobalState we want to update
-     *   }
-     * })
-     */
-    upsert<T extends GlobalStateUpsertArgs>(args: SelectSubset<T, GlobalStateUpsertArgs<ExtArgs>>): Prisma__GlobalStateClient<$Result.GetResult<Prisma.$GlobalStatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of GlobalStates.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GlobalStateCountArgs} args - Arguments to filter GlobalStates to count.
-     * @example
-     * // Count the number of GlobalStates
-     * const count = await prisma.globalState.count({
-     *   where: {
-     *     // ... the filter for the GlobalStates we want to count
-     *   }
-     * })
-    **/
-    count<T extends GlobalStateCountArgs>(
-      args?: Subset<T, GlobalStateCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], GlobalStateCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a GlobalState.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GlobalStateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends GlobalStateAggregateArgs>(args: Subset<T, GlobalStateAggregateArgs>): Prisma.PrismaPromise<GetGlobalStateAggregateType<T>>
-
-    /**
-     * Group by GlobalState.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {GlobalStateGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends GlobalStateGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: GlobalStateGroupByArgs['orderBy'] }
-        : { orderBy?: GlobalStateGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, GlobalStateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGlobalStateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the GlobalState model
-   */
-  readonly fields: GlobalStateFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for GlobalState.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__GlobalStateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the GlobalState model
-   */
-  interface GlobalStateFieldRefs {
-    readonly globalStateId: FieldRef<"GlobalState", 'Int'>
-    readonly category: FieldRef<"GlobalState", 'AnimalType'>
-    readonly startDate: FieldRef<"GlobalState", 'DateTime'>
-    readonly skips: FieldRef<"GlobalState", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * GlobalState findUnique
-   */
-  export type GlobalStateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GlobalState
-     */
-    select?: GlobalStateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GlobalState
-     */
-    omit?: GlobalStateOmit<ExtArgs> | null
-    /**
-     * Filter, which GlobalState to fetch.
-     */
-    where: GlobalStateWhereUniqueInput
-  }
-
-  /**
-   * GlobalState findUniqueOrThrow
-   */
-  export type GlobalStateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GlobalState
-     */
-    select?: GlobalStateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GlobalState
-     */
-    omit?: GlobalStateOmit<ExtArgs> | null
-    /**
-     * Filter, which GlobalState to fetch.
-     */
-    where: GlobalStateWhereUniqueInput
-  }
-
-  /**
-   * GlobalState findFirst
-   */
-  export type GlobalStateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GlobalState
-     */
-    select?: GlobalStateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GlobalState
-     */
-    omit?: GlobalStateOmit<ExtArgs> | null
-    /**
-     * Filter, which GlobalState to fetch.
-     */
-    where?: GlobalStateWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of GlobalStates to fetch.
-     */
-    orderBy?: GlobalStateOrderByWithRelationInput | GlobalStateOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for GlobalStates.
-     */
-    cursor?: GlobalStateWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` GlobalStates from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` GlobalStates.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of GlobalStates.
-     */
-    distinct?: GlobalStateScalarFieldEnum | GlobalStateScalarFieldEnum[]
-  }
-
-  /**
-   * GlobalState findFirstOrThrow
-   */
-  export type GlobalStateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GlobalState
-     */
-    select?: GlobalStateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GlobalState
-     */
-    omit?: GlobalStateOmit<ExtArgs> | null
-    /**
-     * Filter, which GlobalState to fetch.
-     */
-    where?: GlobalStateWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of GlobalStates to fetch.
-     */
-    orderBy?: GlobalStateOrderByWithRelationInput | GlobalStateOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for GlobalStates.
-     */
-    cursor?: GlobalStateWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` GlobalStates from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` GlobalStates.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of GlobalStates.
-     */
-    distinct?: GlobalStateScalarFieldEnum | GlobalStateScalarFieldEnum[]
-  }
-
-  /**
-   * GlobalState findMany
-   */
-  export type GlobalStateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GlobalState
-     */
-    select?: GlobalStateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GlobalState
-     */
-    omit?: GlobalStateOmit<ExtArgs> | null
-    /**
-     * Filter, which GlobalStates to fetch.
-     */
-    where?: GlobalStateWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of GlobalStates to fetch.
-     */
-    orderBy?: GlobalStateOrderByWithRelationInput | GlobalStateOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing GlobalStates.
-     */
-    cursor?: GlobalStateWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` GlobalStates from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` GlobalStates.
-     */
-    skip?: number
-    distinct?: GlobalStateScalarFieldEnum | GlobalStateScalarFieldEnum[]
-  }
-
-  /**
-   * GlobalState create
-   */
-  export type GlobalStateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GlobalState
-     */
-    select?: GlobalStateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GlobalState
-     */
-    omit?: GlobalStateOmit<ExtArgs> | null
-    /**
-     * The data needed to create a GlobalState.
-     */
-    data: XOR<GlobalStateCreateInput, GlobalStateUncheckedCreateInput>
-  }
-
-  /**
-   * GlobalState createMany
-   */
-  export type GlobalStateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many GlobalStates.
-     */
-    data: GlobalStateCreateManyInput | GlobalStateCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * GlobalState createManyAndReturn
-   */
-  export type GlobalStateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GlobalState
-     */
-    select?: GlobalStateSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the GlobalState
-     */
-    omit?: GlobalStateOmit<ExtArgs> | null
-    /**
-     * The data used to create many GlobalStates.
-     */
-    data: GlobalStateCreateManyInput | GlobalStateCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * GlobalState update
-   */
-  export type GlobalStateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GlobalState
-     */
-    select?: GlobalStateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GlobalState
-     */
-    omit?: GlobalStateOmit<ExtArgs> | null
-    /**
-     * The data needed to update a GlobalState.
-     */
-    data: XOR<GlobalStateUpdateInput, GlobalStateUncheckedUpdateInput>
-    /**
-     * Choose, which GlobalState to update.
-     */
-    where: GlobalStateWhereUniqueInput
-  }
-
-  /**
-   * GlobalState updateMany
-   */
-  export type GlobalStateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update GlobalStates.
-     */
-    data: XOR<GlobalStateUpdateManyMutationInput, GlobalStateUncheckedUpdateManyInput>
-    /**
-     * Filter which GlobalStates to update
-     */
-    where?: GlobalStateWhereInput
-    /**
-     * Limit how many GlobalStates to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * GlobalState updateManyAndReturn
-   */
-  export type GlobalStateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GlobalState
-     */
-    select?: GlobalStateSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the GlobalState
-     */
-    omit?: GlobalStateOmit<ExtArgs> | null
-    /**
-     * The data used to update GlobalStates.
-     */
-    data: XOR<GlobalStateUpdateManyMutationInput, GlobalStateUncheckedUpdateManyInput>
-    /**
-     * Filter which GlobalStates to update
-     */
-    where?: GlobalStateWhereInput
-    /**
-     * Limit how many GlobalStates to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * GlobalState upsert
-   */
-  export type GlobalStateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GlobalState
-     */
-    select?: GlobalStateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GlobalState
-     */
-    omit?: GlobalStateOmit<ExtArgs> | null
-    /**
-     * The filter to search for the GlobalState to update in case it exists.
-     */
-    where: GlobalStateWhereUniqueInput
-    /**
-     * In case the GlobalState found by the `where` argument doesn't exist, create a new GlobalState with this data.
-     */
-    create: XOR<GlobalStateCreateInput, GlobalStateUncheckedCreateInput>
-    /**
-     * In case the GlobalState was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<GlobalStateUpdateInput, GlobalStateUncheckedUpdateInput>
-  }
-
-  /**
-   * GlobalState delete
-   */
-  export type GlobalStateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GlobalState
-     */
-    select?: GlobalStateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GlobalState
-     */
-    omit?: GlobalStateOmit<ExtArgs> | null
-    /**
-     * Filter which GlobalState to delete.
-     */
-    where: GlobalStateWhereUniqueInput
-  }
-
-  /**
-   * GlobalState deleteMany
-   */
-  export type GlobalStateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which GlobalStates to delete
-     */
-    where?: GlobalStateWhereInput
-    /**
-     * Limit how many GlobalStates to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * GlobalState without action
-   */
-  export type GlobalStateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GlobalState
-     */
-    select?: GlobalStateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GlobalState
-     */
-    omit?: GlobalStateOmit<ExtArgs> | null
   }
 
 
@@ -10488,6 +10527,19 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+  export const GlobalStateScalarFieldEnum: {
+    globalStateId: 'globalStateId',
+    category: 'category',
+    startDate: 'startDate',
+    skips: 'skips',
+    cycleImages: 'cycleImages',
+    shuffleOrder: 'shuffleOrder',
+    dateShuffled: 'dateShuffled'
+  };
+
+  export type GlobalStateScalarFieldEnum = (typeof GlobalStateScalarFieldEnum)[keyof typeof GlobalStateScalarFieldEnum]
+
+
   export const UnsplashCollectionScalarFieldEnum: {
     collectionId: 'collectionId',
     ingestionComplete: 'ingestionComplete'
@@ -10523,16 +10575,6 @@ export namespace Prisma {
   };
 
   export type ScheduledImageScalarFieldEnum = (typeof ScheduledImageScalarFieldEnum)[keyof typeof ScheduledImageScalarFieldEnum]
-
-
-  export const GlobalStateScalarFieldEnum: {
-    globalStateId: 'globalStateId',
-    category: 'category',
-    startDate: 'startDate',
-    skips: 'skips'
-  };
-
-  export type GlobalStateScalarFieldEnum = (typeof GlobalStateScalarFieldEnum)[keyof typeof GlobalStateScalarFieldEnum]
 
 
   export const UserScalarFieldEnum: {
@@ -10602,14 +10644,6 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-  export const QueryMode: {
-    default: 'default',
-    insensitive: 'insensitive'
-  };
-
-  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
-
-
   export const NullsOrder: {
     first: 'first',
     last: 'last'
@@ -10618,43 +10652,30 @@ export namespace Prisma {
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
+  export const QueryMode: {
+    default: 'default',
+    insensitive: 'insensitive'
+  };
+
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
   /**
    * Field references
    */
 
 
   /**
-   * Reference to a field of type 'String'
+   * Reference to a field of type 'Int'
    */
-  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
     
 
 
   /**
-   * Reference to a field of type 'String[]'
+   * Reference to a field of type 'Int[]'
    */
-  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
-   * Reference to a field of type 'ImageSource'
-   */
-  export type EnumImageSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ImageSource'>
-    
-
-
-  /**
-   * Reference to a field of type 'ImageSource[]'
-   */
-  export type ListEnumImageSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ImageSource[]'>
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -10687,16 +10708,37 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'Boolean'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
   /**
-   * Reference to a field of type 'Int[]'
+   * Reference to a field of type 'String'
    */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+  /**
+   * Reference to a field of type 'String[]'
+   */
+  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'ImageSource'
+   */
+  export type EnumImageSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ImageSource'>
+    
+
+
+  /**
+   * Reference to a field of type 'ImageSource[]'
+   */
+  export type ListEnumImageSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ImageSource[]'>
     
 
 
@@ -10730,6 +10772,70 @@ export namespace Prisma {
    * Deep Input Types
    */
 
+
+  export type GlobalStateWhereInput = {
+    AND?: GlobalStateWhereInput | GlobalStateWhereInput[]
+    OR?: GlobalStateWhereInput[]
+    NOT?: GlobalStateWhereInput | GlobalStateWhereInput[]
+    globalStateId?: IntFilter<"GlobalState"> | number
+    category?: EnumAnimalTypeFilter<"GlobalState"> | $Enums.AnimalType
+    startDate?: DateTimeFilter<"GlobalState"> | Date | string
+    skips?: IntFilter<"GlobalState"> | number
+    cycleImages?: BoolFilter<"GlobalState"> | boolean
+    shuffleOrder?: IntNullableListFilter<"GlobalState">
+    dateShuffled?: DateTimeNullableFilter<"GlobalState"> | Date | string | null
+  }
+
+  export type GlobalStateOrderByWithRelationInput = {
+    globalStateId?: SortOrder
+    category?: SortOrder
+    startDate?: SortOrder
+    skips?: SortOrder
+    cycleImages?: SortOrder
+    shuffleOrder?: SortOrder
+    dateShuffled?: SortOrderInput | SortOrder
+  }
+
+  export type GlobalStateWhereUniqueInput = Prisma.AtLeast<{
+    globalStateId?: number
+    category?: $Enums.AnimalType
+    AND?: GlobalStateWhereInput | GlobalStateWhereInput[]
+    OR?: GlobalStateWhereInput[]
+    NOT?: GlobalStateWhereInput | GlobalStateWhereInput[]
+    startDate?: DateTimeFilter<"GlobalState"> | Date | string
+    skips?: IntFilter<"GlobalState"> | number
+    cycleImages?: BoolFilter<"GlobalState"> | boolean
+    shuffleOrder?: IntNullableListFilter<"GlobalState">
+    dateShuffled?: DateTimeNullableFilter<"GlobalState"> | Date | string | null
+  }, "globalStateId" | "category">
+
+  export type GlobalStateOrderByWithAggregationInput = {
+    globalStateId?: SortOrder
+    category?: SortOrder
+    startDate?: SortOrder
+    skips?: SortOrder
+    cycleImages?: SortOrder
+    shuffleOrder?: SortOrder
+    dateShuffled?: SortOrderInput | SortOrder
+    _count?: GlobalStateCountOrderByAggregateInput
+    _avg?: GlobalStateAvgOrderByAggregateInput
+    _max?: GlobalStateMaxOrderByAggregateInput
+    _min?: GlobalStateMinOrderByAggregateInput
+    _sum?: GlobalStateSumOrderByAggregateInput
+  }
+
+  export type GlobalStateScalarWhereWithAggregatesInput = {
+    AND?: GlobalStateScalarWhereWithAggregatesInput | GlobalStateScalarWhereWithAggregatesInput[]
+    OR?: GlobalStateScalarWhereWithAggregatesInput[]
+    NOT?: GlobalStateScalarWhereWithAggregatesInput | GlobalStateScalarWhereWithAggregatesInput[]
+    globalStateId?: IntWithAggregatesFilter<"GlobalState"> | number
+    category?: EnumAnimalTypeWithAggregatesFilter<"GlobalState"> | $Enums.AnimalType
+    startDate?: DateTimeWithAggregatesFilter<"GlobalState"> | Date | string
+    skips?: IntWithAggregatesFilter<"GlobalState"> | number
+    cycleImages?: BoolWithAggregatesFilter<"GlobalState"> | boolean
+    shuffleOrder?: IntNullableListFilter<"GlobalState">
+    dateShuffled?: DateTimeNullableWithAggregatesFilter<"GlobalState"> | Date | string | null
+  }
 
   export type UnsplashCollectionWhereInput = {
     AND?: UnsplashCollectionWhereInput | UnsplashCollectionWhereInput[]
@@ -10923,55 +11029,6 @@ export namespace Prisma {
     dateIngested?: DateTimeWithAggregatesFilter<"ScheduledImage"> | Date | string
     animalType?: EnumAnimalTypeWithAggregatesFilter<"ScheduledImage"> | $Enums.AnimalType
     index?: IntNullableWithAggregatesFilter<"ScheduledImage"> | number | null
-  }
-
-  export type GlobalStateWhereInput = {
-    AND?: GlobalStateWhereInput | GlobalStateWhereInput[]
-    OR?: GlobalStateWhereInput[]
-    NOT?: GlobalStateWhereInput | GlobalStateWhereInput[]
-    globalStateId?: IntFilter<"GlobalState"> | number
-    category?: EnumAnimalTypeFilter<"GlobalState"> | $Enums.AnimalType
-    startDate?: DateTimeFilter<"GlobalState"> | Date | string
-    skips?: IntFilter<"GlobalState"> | number
-  }
-
-  export type GlobalStateOrderByWithRelationInput = {
-    globalStateId?: SortOrder
-    category?: SortOrder
-    startDate?: SortOrder
-    skips?: SortOrder
-  }
-
-  export type GlobalStateWhereUniqueInput = Prisma.AtLeast<{
-    globalStateId?: number
-    category?: $Enums.AnimalType
-    AND?: GlobalStateWhereInput | GlobalStateWhereInput[]
-    OR?: GlobalStateWhereInput[]
-    NOT?: GlobalStateWhereInput | GlobalStateWhereInput[]
-    startDate?: DateTimeFilter<"GlobalState"> | Date | string
-    skips?: IntFilter<"GlobalState"> | number
-  }, "globalStateId" | "category">
-
-  export type GlobalStateOrderByWithAggregationInput = {
-    globalStateId?: SortOrder
-    category?: SortOrder
-    startDate?: SortOrder
-    skips?: SortOrder
-    _count?: GlobalStateCountOrderByAggregateInput
-    _avg?: GlobalStateAvgOrderByAggregateInput
-    _max?: GlobalStateMaxOrderByAggregateInput
-    _min?: GlobalStateMinOrderByAggregateInput
-    _sum?: GlobalStateSumOrderByAggregateInput
-  }
-
-  export type GlobalStateScalarWhereWithAggregatesInput = {
-    AND?: GlobalStateScalarWhereWithAggregatesInput | GlobalStateScalarWhereWithAggregatesInput[]
-    OR?: GlobalStateScalarWhereWithAggregatesInput[]
-    NOT?: GlobalStateScalarWhereWithAggregatesInput | GlobalStateScalarWhereWithAggregatesInput[]
-    globalStateId?: IntWithAggregatesFilter<"GlobalState"> | number
-    category?: EnumAnimalTypeWithAggregatesFilter<"GlobalState"> | $Enums.AnimalType
-    startDate?: DateTimeWithAggregatesFilter<"GlobalState"> | Date | string
-    skips?: IntWithAggregatesFilter<"GlobalState"> | number
   }
 
   export type UserWhereInput = {
@@ -11272,6 +11329,73 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Verification"> | Date | string
   }
 
+  export type GlobalStateCreateInput = {
+    category: $Enums.AnimalType
+    startDate: Date | string
+    skips?: number
+    cycleImages?: boolean
+    shuffleOrder?: GlobalStateCreateshuffleOrderInput | number[]
+    dateShuffled?: Date | string | null
+  }
+
+  export type GlobalStateUncheckedCreateInput = {
+    globalStateId?: number
+    category: $Enums.AnimalType
+    startDate: Date | string
+    skips?: number
+    cycleImages?: boolean
+    shuffleOrder?: GlobalStateCreateshuffleOrderInput | number[]
+    dateShuffled?: Date | string | null
+  }
+
+  export type GlobalStateUpdateInput = {
+    category?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    skips?: IntFieldUpdateOperationsInput | number
+    cycleImages?: BoolFieldUpdateOperationsInput | boolean
+    shuffleOrder?: GlobalStateUpdateshuffleOrderInput | number[]
+    dateShuffled?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type GlobalStateUncheckedUpdateInput = {
+    globalStateId?: IntFieldUpdateOperationsInput | number
+    category?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    skips?: IntFieldUpdateOperationsInput | number
+    cycleImages?: BoolFieldUpdateOperationsInput | boolean
+    shuffleOrder?: GlobalStateUpdateshuffleOrderInput | number[]
+    dateShuffled?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type GlobalStateCreateManyInput = {
+    globalStateId?: number
+    category: $Enums.AnimalType
+    startDate: Date | string
+    skips?: number
+    cycleImages?: boolean
+    shuffleOrder?: GlobalStateCreateshuffleOrderInput | number[]
+    dateShuffled?: Date | string | null
+  }
+
+  export type GlobalStateUpdateManyMutationInput = {
+    category?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    skips?: IntFieldUpdateOperationsInput | number
+    cycleImages?: BoolFieldUpdateOperationsInput | boolean
+    shuffleOrder?: GlobalStateUpdateshuffleOrderInput | number[]
+    dateShuffled?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type GlobalStateUncheckedUpdateManyInput = {
+    globalStateId?: IntFieldUpdateOperationsInput | number
+    category?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    skips?: IntFieldUpdateOperationsInput | number
+    cycleImages?: BoolFieldUpdateOperationsInput | boolean
+    shuffleOrder?: GlobalStateUpdateshuffleOrderInput | number[]
+    dateShuffled?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type UnsplashCollectionCreateInput = {
     collectionId: string
     ingestionComplete?: boolean
@@ -11476,52 +11600,6 @@ export namespace Prisma {
     dateIngested?: DateTimeFieldUpdateOperationsInput | Date | string
     animalType?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
     index?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type GlobalStateCreateInput = {
-    category: $Enums.AnimalType
-    startDate: Date | string
-    skips?: number
-  }
-
-  export type GlobalStateUncheckedCreateInput = {
-    globalStateId?: number
-    category: $Enums.AnimalType
-    startDate: Date | string
-    skips?: number
-  }
-
-  export type GlobalStateUpdateInput = {
-    category?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    skips?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type GlobalStateUncheckedUpdateInput = {
-    globalStateId?: IntFieldUpdateOperationsInput | number
-    category?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    skips?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type GlobalStateCreateManyInput = {
-    globalStateId?: number
-    category: $Enums.AnimalType
-    startDate: Date | string
-    skips?: number
-  }
-
-  export type GlobalStateUpdateManyMutationInput = {
-    category?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    skips?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type GlobalStateUncheckedUpdateManyInput = {
-    globalStateId?: IntFieldUpdateOperationsInput | number
-    category?: EnumAnimalTypeFieldUpdateOperationsInput | $Enums.AnimalType
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    skips?: IntFieldUpdateOperationsInput | number
   }
 
   export type UserCreateInput = {
@@ -11863,6 +11941,166 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type EnumAnimalTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.AnimalType | EnumAnimalTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumAnimalTypeFilter<$PrismaModel> | $Enums.AnimalType
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type IntNullableListFilter<$PrismaModel = never> = {
+    equals?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    has?: number | IntFieldRefInput<$PrismaModel> | null
+    hasEvery?: number[] | ListIntFieldRefInput<$PrismaModel>
+    hasSome?: number[] | ListIntFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type GlobalStateCountOrderByAggregateInput = {
+    globalStateId?: SortOrder
+    category?: SortOrder
+    startDate?: SortOrder
+    skips?: SortOrder
+    cycleImages?: SortOrder
+    shuffleOrder?: SortOrder
+    dateShuffled?: SortOrder
+  }
+
+  export type GlobalStateAvgOrderByAggregateInput = {
+    globalStateId?: SortOrder
+    skips?: SortOrder
+    shuffleOrder?: SortOrder
+  }
+
+  export type GlobalStateMaxOrderByAggregateInput = {
+    globalStateId?: SortOrder
+    category?: SortOrder
+    startDate?: SortOrder
+    skips?: SortOrder
+    cycleImages?: SortOrder
+    dateShuffled?: SortOrder
+  }
+
+  export type GlobalStateMinOrderByAggregateInput = {
+    globalStateId?: SortOrder
+    category?: SortOrder
+    startDate?: SortOrder
+    skips?: SortOrder
+    cycleImages?: SortOrder
+    dateShuffled?: SortOrder
+  }
+
+  export type GlobalStateSumOrderByAggregateInput = {
+    globalStateId?: SortOrder
+    skips?: SortOrder
+    shuffleOrder?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type EnumAnimalTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AnimalType | EnumAnimalTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumAnimalTypeWithAggregatesFilter<$PrismaModel> | $Enums.AnimalType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAnimalTypeFilter<$PrismaModel>
+    _max?: NestedEnumAnimalTypeFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -11876,11 +12114,6 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
-  }
-
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type IngestedUnsplashImageListRelationFilter = {
@@ -11936,14 +12169,6 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type EnumImageSourceFilter<$PrismaModel = never> = {
     equals?: $Enums.ImageSource | EnumImageSourceFieldRefInput<$PrismaModel>
     in?: $Enums.ImageSource[] | ListEnumImageSourceFieldRefInput<$PrismaModel>
@@ -11956,32 +12181,9 @@ export namespace Prisma {
     not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
-  export type EnumAnimalTypeFilter<$PrismaModel = never> = {
-    equals?: $Enums.AnimalType | EnumAnimalTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumAnimalTypeFilter<$PrismaModel> | $Enums.AnimalType
-  }
-
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
   export type UnsplashCollectionScalarRelationFilter = {
     is?: UnsplashCollectionWhereInput
     isNot?: UnsplashCollectionWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type IngestedUnsplashImageCountOrderByAggregateInput = {
@@ -12035,30 +12237,6 @@ export namespace Prisma {
     _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
-  export type EnumAnimalTypeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.AnimalType | EnumAnimalTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumAnimalTypeWithAggregatesFilter<$PrismaModel> | $Enums.AnimalType
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumAnimalTypeFilter<$PrismaModel>
-    _max?: NestedEnumAnimalTypeFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -12072,17 +12250,6 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -12178,20 +12345,6 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -12206,64 +12359,6 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type GlobalStateCountOrderByAggregateInput = {
-    globalStateId?: SortOrder
-    category?: SortOrder
-    startDate?: SortOrder
-    skips?: SortOrder
-  }
-
-  export type GlobalStateAvgOrderByAggregateInput = {
-    globalStateId?: SortOrder
-    skips?: SortOrder
-  }
-
-  export type GlobalStateMaxOrderByAggregateInput = {
-    globalStateId?: SortOrder
-    category?: SortOrder
-    startDate?: SortOrder
-    skips?: SortOrder
-  }
-
-  export type GlobalStateMinOrderByAggregateInput = {
-    globalStateId?: SortOrder
-    category?: SortOrder
-    startDate?: SortOrder
-    skips?: SortOrder
-  }
-
-  export type GlobalStateSumOrderByAggregateInput = {
-    globalStateId?: SortOrder
-    skips?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type EnumRoleNullableFilter<$PrismaModel = never> = {
@@ -12449,6 +12544,39 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type GlobalStateCreateshuffleOrderInput = {
+    set: number[]
+  }
+
+  export type EnumAnimalTypeFieldUpdateOperationsInput = {
+    set?: $Enums.AnimalType
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type GlobalStateUpdateshuffleOrderInput = {
+    set?: number[]
+    push?: number | number[]
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type IngestedUnsplashImageCreateNestedManyWithoutCollectionInput = {
     create?: XOR<IngestedUnsplashImageCreateWithoutCollectionInput, IngestedUnsplashImageUncheckedCreateWithoutCollectionInput> | IngestedUnsplashImageCreateWithoutCollectionInput[] | IngestedUnsplashImageUncheckedCreateWithoutCollectionInput[]
     connectOrCreate?: IngestedUnsplashImageCreateOrConnectWithoutCollectionInput | IngestedUnsplashImageCreateOrConnectWithoutCollectionInput[]
@@ -12479,10 +12607,6 @@ export namespace Prisma {
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
   }
 
   export type IngestedUnsplashImageUpdateManyWithoutCollectionNestedInput = {
@@ -12555,14 +12679,6 @@ export namespace Prisma {
     set?: boolean | null
   }
 
-  export type EnumAnimalTypeFieldUpdateOperationsInput = {
-    set?: $Enums.AnimalType
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
-  }
-
   export type UnsplashCollectionUpdateOneRequiredWithoutIngestedUnsplashImagesNestedInput = {
     create?: XOR<UnsplashCollectionCreateWithoutIngestedUnsplashImagesInput, UnsplashCollectionUncheckedCreateWithoutIngestedUnsplashImagesInput>
     connectOrCreate?: UnsplashCollectionCreateOrConnectWithoutIngestedUnsplashImagesInput
@@ -12591,10 +12707,6 @@ export namespace Prisma {
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
   }
 
   export type NullableIntFieldUpdateOperationsInput = {
@@ -12639,14 +12751,6 @@ export namespace Prisma {
     update?: UserUpdateWithWhereUniqueWithoutFavouritesInput | UserUpdateWithWhereUniqueWithoutFavouritesInput[]
     updateMany?: UserUpdateManyWithWhereWithoutFavouritesInput | UserUpdateManyWithWhereWithoutFavouritesInput[]
     deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type SessionCreateNestedManyWithoutUserInput = {
@@ -12803,42 +12907,6 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAccountsInput, UserUpdateWithoutAccountsInput>, UserUncheckedUpdateWithoutAccountsInput>
   }
 
-  export type NestedStringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringFilter<$PrismaModel> | string
-  }
-
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
-
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -12848,26 +12916,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedEnumImageSourceFilter<$PrismaModel = never> = {
-    equals?: $Enums.ImageSource | EnumImageSourceFieldRefInput<$PrismaModel>
-    in?: $Enums.ImageSource[] | ListEnumImageSourceFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ImageSource[] | ListEnumImageSourceFieldRefInput<$PrismaModel>
-    not?: NestedEnumImageSourceFilter<$PrismaModel> | $Enums.ImageSource
-  }
-
-  export type NestedBoolNullableFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
   export type NestedEnumAnimalTypeFilter<$PrismaModel = never> = {
@@ -12888,71 +12936,9 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type NestedEnumImageSourceWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.ImageSource | EnumImageSourceFieldRefInput<$PrismaModel>
-    in?: $Enums.ImageSource[] | ListEnumImageSourceFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ImageSource[] | ListEnumImageSourceFieldRefInput<$PrismaModel>
-    not?: NestedEnumImageSourceWithAggregatesFilter<$PrismaModel> | $Enums.ImageSource
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumImageSourceFilter<$PrismaModel>
-    _max?: NestedEnumImageSourceFilter<$PrismaModel>
-  }
-
-  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBoolNullableFilter<$PrismaModel>
-    _max?: NestedBoolNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedEnumAnimalTypeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.AnimalType | EnumAnimalTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumAnimalTypeWithAggregatesFilter<$PrismaModel> | $Enums.AnimalType
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumAnimalTypeFilter<$PrismaModel>
-    _max?: NestedEnumAnimalTypeFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
@@ -12964,64 +12950,6 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -13049,6 +12977,182 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedEnumAnimalTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AnimalType | EnumAnimalTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AnimalType[] | ListEnumAnimalTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumAnimalTypeWithAggregatesFilter<$PrismaModel> | $Enums.AnimalType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAnimalTypeFilter<$PrismaModel>
+    _max?: NestedEnumAnimalTypeFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedStringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedEnumImageSourceFilter<$PrismaModel = never> = {
+    equals?: $Enums.ImageSource | EnumImageSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.ImageSource[] | ListEnumImageSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ImageSource[] | ListEnumImageSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumImageSourceFilter<$PrismaModel> | $Enums.ImageSource
+  }
+
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
+  export type NestedEnumImageSourceWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ImageSource | EnumImageSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.ImageSource[] | ListEnumImageSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ImageSource[] | ListEnumImageSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumImageSourceWithAggregatesFilter<$PrismaModel> | $Enums.ImageSource
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumImageSourceFilter<$PrismaModel>
+    _max?: NestedEnumImageSourceFilter<$PrismaModel>
+  }
+
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedEnumRoleNullableFilter<$PrismaModel = never> = {

@@ -21,6 +21,16 @@ enum AnimalType {
   Bunny
 }
 
+model GlobalState {
+  globalStateId Int        @id @default(autoincrement())
+  category      AnimalType @unique
+  startDate     DateTime
+  skips         Int        @default(0)
+  cycleImages   Boolean    @default(false)
+  shuffleOrder  Int[]      @default([])
+  dateShuffled  DateTime?
+}
+
 model UnsplashCollection {
   collectionId           String                  @id
   ingestionComplete      Boolean                 @default(false)
@@ -61,13 +71,6 @@ enum ImageSource {
   Unsplash
   GCP
   Other
-}
-
-model GlobalState {
-  globalStateId Int        @id @default(autoincrement())
-  category      AnimalType @unique
-  startDate     DateTime
-  skips         Int        @default(0)
 }
 
 model User {

@@ -52,9 +52,36 @@ export async function getIndexWithSkips(category: AnimalType): Promise<{
     const globalState = await prisma.globalState.findUnique({
         where: { category },
     });
+
     if (!globalState) return notFound();
+
+    let currentIndex = daysSince(globalState.startDate) + 1;
+
+    // ONLY USE ABOVE CURRENT INDEX IF DAYSSINCE IS GREATER THAN SHUFFLE ARRAY LENGTH BUT STILL ON FIRST CYCLE
+
+    if (globalState.cycleImages) {
+        let shuffleOrder = globalState.shuffleOrder;
+        const todaysDate = new Date();
+        const totalImages = await prisma.scheduledImage.count({ where: { animalType: category } });
+
+        const newCycle = (daysSince(globalState.startDate) + 1) % totalImages == 1;
+
+        const shuffleArrayOutOfSync = currentIndex > shuffleOrder.length && currentIndex <= totalImages && shuffleOrder.length != 0;
+
+        if (!shuffleArrayOutOfSync) {
+            if (newCycle && (!globalState.dateShuffled || daysSince(todaysDate) != daysSince(globalState.dateShuffled))) {
+                const arr = [...Array(totalImages).keys()].map((i) => i + 1);
+                const newShuffle = shuffleArray(arr);
+                await prisma.globalState.update({ data: { shuffleOrder: newShuffle, dateShuffled: new Date() }, where: { category } });
+                shuffleOrder = newShuffle;
+            }
+
+            currentIndex = shuffleOrder[daysSince(globalState.startDate) % totalImages];
+        }
+    }
+
     return {
-        currentIndex: daysSince(globalState.startDate) + 1 + globalState.skips,
+        currentIndex: currentIndex + globalState.skips,
         skips: globalState.skips,
     };
 }
@@ -74,4 +101,14 @@ export const capitalise = (s: string) => s && s[0].toUpperCase() + s.slice(1);
 
 export function checkAnimalType(animalType: AnimalType) {
     return Object.values(AnimalType).includes(animalType);
+}
+
+export function shuffleArray(array: number[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
 }
