@@ -1,5 +1,5 @@
 "use client";
-import { AnimalType } from "@/lib/generated/prisma";
+import { AnimalType, Role } from "@/lib/generated/prisma";
 import AnimalCard from "./AnimalCard";
 import { Fragment } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -7,9 +7,19 @@ import { loadingVariants } from "./DisplayImage";
 
 interface AnimalCardGridProps {
     animalType: AnimalType;
+    userRole: Role | null;
 }
 
-export default function AnimalCardGrid({ animalType }: AnimalCardGridProps) {
+export default function AnimalCardGrid({ animalType, userRole }: AnimalCardGridProps) {
+    function showCard(animal: AnimalType) {
+        if (animalType != animal) {
+            if (animal == "Bobby") {
+                if (userRole == "Jasmine" || userRole == "Admin") return true;
+                return false;
+            }
+            return true;
+        }
+    }
     return (
         <AnimatePresence>
             <motion.div
@@ -23,7 +33,7 @@ export default function AnimalCardGrid({ animalType }: AnimalCardGridProps) {
 
                 <div className="flex gap-3">
                     {Object.values(AnimalType).map((animal, index) => (
-                        <Fragment key={animal}>{animalType != animal && <AnimalCard key={index} animal={animal} />}</Fragment>
+                        <Fragment key={animal}>{showCard(animal) && <AnimalCard key={index} animal={animal} />}</Fragment>
                     ))}
                 </div>
             </motion.div>

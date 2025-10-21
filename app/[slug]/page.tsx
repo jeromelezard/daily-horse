@@ -24,16 +24,17 @@ export default async function AnimalPage({ params }: { params: Promise<{ slug: s
     });
 
     if (!todaysImage) return notFound();
-
-    if (!todaysImage.published)
-        await prisma.scheduledImage.update({ where: { scheduledImageId: todaysImage.scheduledImageId }, data: { published: new Date() } });
-
     const session = await auth.api.getSession({ headers: await headers() });
     let foundUser = null;
     if (session)
         foundUser = (await prisma.user.findUnique({ where: { id: session?.user.id }, include: { favourites: { where: { animalType } } } })) ?? null;
 
+    if (animalType == "Bobby" && (!foundUser || (foundUser.role != "Jasmine" && foundUser.role != "Admin"))) return notFound();
+
     if (todaysImage.index != currentIndex) {
+        if (!todaysImage.published)
+            await prisma.scheduledImage.update({ where: { scheduledImageId: todaysImage.scheduledImageId }, data: { published: new Date() } });
+
         await prisma.globalState.update({
             where: { category: animalType },
             data: { skips: skips + (todaysImage.index! - currentIndex) },
@@ -43,7 +44,7 @@ export default async function AnimalPage({ params }: { params: Promise<{ slug: s
         <div className="flex flex-col items-center justify-center">
             <DisplayImage image={todaysImage} session={session} userFavourites={foundUser ? foundUser.favourites : undefined} />
             <Timer animal={animalType} />
-            <AnimalCardGrid animalType={animalType} />
+            <AnimalCardGrid animalType={animalType} userRole={foundUser?.role ?? null} />
         </div>
     );
 }
