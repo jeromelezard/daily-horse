@@ -23,6 +23,8 @@ export default function Header({ session }: { session: BetterAuthSession | null 
                 return "Daily Bobby";
             case "Bunny":
                 return "Daily Bunny";
+            case "Dolphin":
+                return "Daily Dolphin";
             default:
                 return "Daily Horsey";
         }

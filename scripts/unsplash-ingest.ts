@@ -5,9 +5,9 @@ import { AnimalType } from "@/lib/generated/prisma";
 import { prisma } from "@/lib/prisma";
 
 // const COLLECTION_ID = "2432560"; HORSE ID KEEP
-const COLLECTION_ID = "e02AV_hPKAU";
+const COLLECTION_ID = "8358106";
 const IMAGES_PER_PAGE = 20;
-const ANIMAL_TYPE: AnimalType = "Bunny";
+const ANIMAL_TYPE: AnimalType = "Dolphin";
 
 async function ingestImages() {
     const collectionData = await fetch(`${process.env.NEXT_PUBLIC_UNSPLASH_API_ENDPOINT}/collections/${COLLECTION_ID}`, {

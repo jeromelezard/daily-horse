@@ -61,7 +61,8 @@ export namespace $Enums {
   export const AnimalType: {
   Horse: 'Horse',
   Bobby: 'Bobby',
-  Bunny: 'Bunny'
+  Bunny: 'Bunny',
+  Dolphin: 'Dolphin'
 };
 
 export type AnimalType = (typeof AnimalType)[keyof typeof AnimalType]
