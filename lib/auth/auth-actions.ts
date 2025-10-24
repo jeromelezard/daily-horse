@@ -2,10 +2,10 @@
 
 import { auth } from "./auth";
 import { redirect } from "next/navigation";
-import { Provider } from "../generated/prisma";
+import { AuthProvider } from "../generated/prisma";
 import { headers } from "next/headers";
 
-export async function signIn(provider: Provider, callbackURL: string) {
+export async function signIn(provider: AuthProvider, callbackURL: string) {
     const { url } = await auth.api.signInSocial({
         body: {
             provider: provider.toLowerCase(),

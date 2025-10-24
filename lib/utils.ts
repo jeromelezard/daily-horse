@@ -1,7 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { prisma } from "./prisma";
-import { AnimalType, Provider } from "./generated/prisma";
+import { AnimalType, AuthProvider } from "./generated/prisma";
 import { faApple, faGoogle, faMicrosoft } from "@fortawesome/free-brands-svg-icons";
 import { notFound } from "next/navigation";
 
@@ -86,7 +86,7 @@ export async function getIndexWithSkips(category: AnimalType): Promise<{
     };
 }
 
-export function getIconForProvider(provider: Provider) {
+export function getIconForProvider(provider: AuthProvider) {
     switch (provider) {
         case "Google":
             return faGoogle;

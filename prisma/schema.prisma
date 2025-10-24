@@ -136,7 +136,7 @@ model Verification {
   @@map("verification")
 }
 
-enum Provider {
+enum AuthProvider {
   Google
   Microsoft
   Apple
