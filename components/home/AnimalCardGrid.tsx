@@ -12,13 +12,11 @@ interface AnimalCardGridProps {
 
 export default function AnimalCardGrid({ animalType, userRole }: AnimalCardGridProps) {
     function showCard(animal: AnimalType) {
-        if (animalType != animal) {
-            if (animal == "Bobby") {
-                if (userRole == "Jasmine" || userRole == "Admin") return true;
-                return false;
-            }
-            return true;
+        if (animal == "Bobby") {
+            if (userRole == "Jasmine" || userRole == "Admin") return true;
+            return false;
         }
+        return true;
     }
     return (
         <AnimatePresence>
@@ -29,11 +27,11 @@ export default function AnimalCardGrid({ animalType, userRole }: AnimalCardGridP
                 exit="exit"
                 className="flex flex-col justify-center items-center gap-3 mt-3 pb-5"
             >
-                <h2 className="font-semibold">Check out our other daily animals!</h2>
+                <h2 className="font-semibold">Check out our daily animals!</h2>
 
                 <div className="flex gap-3">
                     {Object.values(AnimalType).map((animal, index) => (
-                        <Fragment key={animal}>{showCard(animal) && <AnimalCard key={index} animal={animal} />}</Fragment>
+                        <Fragment key={animal}>{showCard(animal) && <AnimalCard key={index} animal={animal} selected={animal === animalType} />}</Fragment>
                     ))}
                 </div>
             </motion.div>

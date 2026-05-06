@@ -1,12 +1,15 @@
 import AnimalCardGrid from "@/components/home/AnimalCardGrid";
 import DisplayImage from "@/components/home/DisplayImage";
+import RequireSignIn from "@/components/auth/RequireSignIn";
 import { EmailTemplate } from "@/components/layout/EmailTemplate";
 import Timer from "@/components/layout/Timer";
 import { auth } from "@/lib/auth/auth";
 import { AnimalType } from "@/lib/generated/prisma";
 import { prisma } from "@/lib/prisma";
 import { capitalise, checkAnimalType, getIndexWithSkips } from "@/lib/utils";
+import { Frown } from "lucide-react";
 import { headers } from "next/headers";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Resend } from "resend";
 
@@ -27,13 +30,35 @@ export default async function AnimalPage({ params }: { params: Promise<{ slug: s
         orderBy: { dateIngested: "asc" },
     });
 
-    if (!todaysImage) return notFound();
     const session = await auth.api.getSession({ headers: await headers() });
     let foundUser = null;
     if (session)
         foundUser = (await prisma.user.findUnique({ where: { id: session?.user.id }, include: { favourites: { where: { animalType } } } })) ?? null;
 
-    if (animalType == "Bobby" && (!foundUser || (foundUser.role != "Jasmine" && foundUser.role != "Admin"))) return notFound();
+    if (animalType == "Bobby") {
+        if (!session) return <RequireSignIn message="Please sign in to view this page." />;
+        if (!foundUser || (foundUser.role != "Jasmine" && foundUser.role != "Admin")) return notFound();
+    }
+
+    if (!todaysImage) {
+        return (
+            <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center gap-3 pt-16 pb-10 px-6 text-center">
+                    {animalType === "Horse" ? (
+                        <Image src="/sneeze.png" alt="Sad horse" width={160} height={160} className="size-40 object-contain" />
+                    ) : animalType === "Bunny" ? (
+                        <Image src="/no.jpg" alt="Sad bunny" width={160} height={160} className="size-40 object-contain" />
+                    ) : animalType === "Dolphin" ? (
+                        <Image src="/deep.png" alt="Sad dolphin" width={160} height={160} className="size-40 object-contain" />
+                    ) : (
+                        <Frown className="size-16 text-muted-foreground" strokeWidth={1.5} />
+                    )}
+                    <h2 className="text-xl font-semibold">No more {animalType.toLowerCase()} pics to show :(</h2>
+                </div>
+                <AnimalCardGrid animalType={animalType} userRole={foundUser?.role ?? null} />
+            </div>
+        );
+    }
 
     if (!todaysImage.published) {
         await prisma.scheduledImage.update({ where: { scheduledImageId: todaysImage.scheduledImageId }, data: { published: new Date() } });
