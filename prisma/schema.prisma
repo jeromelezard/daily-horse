@@ -20,6 +20,7 @@ enum AnimalType {
   Bobby
   Bunny
   Dolphin
+  Schnuk
 }
 
 model GlobalState {

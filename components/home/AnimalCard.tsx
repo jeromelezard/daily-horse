@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimalType } from "@/lib/generated/prisma";
-import { faCarrot, faHorseHead, faPaw, faWater } from "@fortawesome/free-solid-svg-icons";
+import { faCarrot, faHeart, faHorseHead, faPaw, faWater } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -39,5 +39,7 @@ function getAnimalIcon(animal: AnimalType) {
             return faCarrot;
         case "Dolphin":
             return faWater;
+        case "Schnuk":
+            return faHeart;
     }
 }
