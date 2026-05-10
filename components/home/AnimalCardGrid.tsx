@@ -16,6 +16,9 @@ export default function AnimalCardGrid({ animalType, userRole }: AnimalCardGridP
             if (userRole == "Jasmine" || userRole == "Admin") return true;
             return false;
         }
+        if (animal == "Schnuk") {
+            return userRole == "Admin";
+        }
         return true;
     }
     return (
@@ -25,11 +28,11 @@ export default function AnimalCardGrid({ animalType, userRole }: AnimalCardGridP
                 initial="initial"
                 animate="animate"
                 exit="exit"
-                className="flex flex-col justify-center items-center gap-3 mt-3 pb-5"
+                className="flex flex-col justify-center items-center gap-3 mt-3 pb-5 px-4 w-full"
             >
                 <h2 className="font-semibold">Check out our daily animals!</h2>
 
-                <div className="flex gap-3">
+                <div className="flex flex-wrap justify-center gap-3 max-w-full">
                     {Object.values(AnimalType).map((animal, index) => (
                         <Fragment key={animal}>{showCard(animal) && <AnimalCard key={index} animal={animal} selected={animal === animalType} />}</Fragment>
                     ))}

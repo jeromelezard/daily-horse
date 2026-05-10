@@ -8,7 +8,8 @@
         "start": "next start",
         "postinstall": "prisma generate",
         "ingest-images-unsplash": "npx tsx scripts/unsplash-ingest.ts",
-        "ingest-images-gcp": "npx tsx scripts/gcp-ingest.ts"
+        "ingest-images-gcp": "npx tsx scripts/gcp-ingest.ts",
+        "seed-schnuk": "npx tsx scripts/seedSchnuk.ts"
     },
     "dependencies": {
         "@fortawesome/free-brands-svg-icons": "^7.0.1",
