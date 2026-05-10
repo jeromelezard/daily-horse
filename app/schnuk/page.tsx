@@ -25,7 +25,8 @@ const SCHNUK_DAY_CONTENT: readonly ReactNode[] = [
             <br />
             <br /> How did I become <b>the luckiest man in the entire world?</b>
             <br />
-            <br /> Let me take you on a journey into how this came to be. See you tomorrow x
+            <br /> While we count down the days to your birthday, lets also take a journey back through time into how this came to be. See you
+            tomorrow x
         </p>
     </>,
     <>
@@ -34,7 +35,7 @@ const SCHNUK_DAY_CONTENT: readonly ReactNode[] = [
         </h1>
         <p>
             I never realised how comfortable I could be around a person, truly, until this holiday. You made my heart so full with love I didnt know
-            how to expel it. While staying in a true paradise of a place I couldn't believe my luck I got to live an even greater paradise every
+            how to expel it. While staying in a true paradise of a place I couldn't believe my luck I got to experience an even greater paradise every
             single night, falling asleep holing the person I love most dearly in my arms. How lucky I am, but we are not close to the beginning yet…
         </p>
     </>,
@@ -54,18 +55,18 @@ const SCHNUK_DAY_CONTENT: readonly ReactNode[] = [
             <b>Day 4 - 最后，我的女朋友</b>
         </h1>
         <p>
-            Theres a reason it only took 4 days to realise I had to make you mine. Maybe it was your smile, maybe it was your reels feed, maybe it was
-            you buying me Chinese McDonalds while was ill in your hotel room. All I know is after 4 days I couldn't stand the idea that I would keep
-            on travelling not knowing where you would be in my life.
+            Theres a reason it only took 4 days to realise I had to make you mine. Maybe it was your smile, maybe it was you buying me Chinese
+            McDonalds while I was ill in your hotel room, or maybe it was your reels feed. All I know is after 4 days I couldn't stand the idea that I
+            would keep on travelling not knowing where you would be in my life.
             <br />
             <br />
-            This is where it all began.. this point is where I first thought to myself I am the luckiest man in the world… and yet its not the
+            This is where it all began. This point is where I first thought to myself I am the luckiest man in the world… and yet its not the
             beginning, so what was?
         </p>
     </>,
     <>
         <h1 className="text-center text-xl">
-            <b>Day 5 - Crossing paths</b>
+            <b>Day 5 - Right place, right time</b>
         </h1>
         <p>
             You could say it started from a spontaneous instagram message, but in my opinion it really started here, in Port Barton. <br />
@@ -76,7 +77,8 @@ const SCHNUK_DAY_CONTENT: readonly ReactNode[] = [
     </>,
     <>
         <p>
-            <strong>Day 6.</strong> TODO.
+            HAPPY BIRTHDAY
+            <strong>Day 6(7) - Destined.</strong> TODO.
         </p>
     </>,
 ];
