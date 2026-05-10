@@ -2,7 +2,7 @@
 
 import { ScheduledImage } from "@/lib/generated/prisma";
 import { X } from "lucide-react";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import Link from "next/link";
@@ -13,6 +13,7 @@ interface Favourites {
     pageTitle: string;
     notFoundMessage: string;
     images: ScheduledImage[];
+    footers?: Record<string, ReactNode>;
 }
 interface FavouritesWithDialog extends Favourites {
     removeImage: (animalId: string) => void;
@@ -24,7 +25,7 @@ interface FavouritesNoDialog extends Favourites {
     withDialog?: undefined;
 }
 
-export default function ImageList({ pageTitle, notFoundMessage, images, removeImage, withDialog = true }: FavouritesListProps) {
+export default function ImageList({ pageTitle, notFoundMessage, images, removeImage, withDialog = true, footers }: FavouritesListProps) {
     const [openDialog, setOpenDialog] = useState(false);
     const [animalToRemove, setAnimalToRemove] = useState("");
 
@@ -59,6 +60,9 @@ export default function ImageList({ pageTitle, notFoundMessage, images, removeIm
                             <div className="p-3 text-sm text-gray-700 font-semibold">
                                 {image.published ? new Date(image.published).toLocaleDateString() : "No date found"}
                             </div>
+                            {footers?.[image.scheduledImageId] && (
+                                <div className="px-3 pb-3 text-sm text-slate-700 leading-relaxed space-y-2">{footers[image.scheduledImageId]}</div>
+                            )}
                         </div>
                     ))}
                 </div>

@@ -3,6 +3,7 @@
 import { AnimalType, ScheduledImage } from "@/lib/generated/prisma";
 import { useEffect, useState } from "react";
 
+import { SCHNUK_DAY_CONTENT, getSchnukDayForImageIndex } from "@/lib/schnukContent";
 import ImageList from "./ImageList";
 
 export default function FavouritesWithLocal({ animalType }: { animalType: AnimalType }) {
@@ -16,13 +17,23 @@ export default function FavouritesWithLocal({ animalType }: { animalType: Animal
                 setFavourites(favouritesArray);
             }
         }
-    }, []);
+    }, [animalType]);
 
     function removeFavourite(animalId: string) {
         if (animalId == "") return;
         localStorage.setItem("favourites", JSON.stringify(favourites.filter((fav) => fav.scheduledImageId != animalId)));
         setFavourites((prevFavs) => prevFavs.filter((fav) => fav.scheduledImageId != animalId));
     }
+
+    const footers =
+        animalType === "Schnuk"
+            ? Object.fromEntries(
+                  favourites.map((fav) => {
+                      const day = getSchnukDayForImageIndex(fav.index);
+                      return [fav.scheduledImageId, SCHNUK_DAY_CONTENT[day] ?? null];
+                  })
+              )
+            : undefined;
 
     return (
         <ImageList
@@ -31,6 +42,7 @@ export default function FavouritesWithLocal({ animalType }: { animalType: Animal
             withDialog
             pageTitle="Your favourites"
             notFoundMessage="No favourites yet. Go add some animals!"
+            footers={footers}
         />
     );
 }

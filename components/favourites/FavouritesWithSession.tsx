@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { toggleUserFavourite } from "@/lib/auth/utils";
 import ImageList from "./ImageList";
 import { AnimalType } from "@/lib/generated/prisma";
+import { SCHNUK_DAY_CONTENT, getSchnukDayForImageIndex } from "@/lib/schnukContent";
 
 export default async function FavouritesWithSession({ session, animalType }: { session: BetterAuthSession; animalType: AnimalType }) {
     const user = await prisma.user.findUnique({ where: { id: session.user.id }, include: { favourites: { where: { animalType } } } });
@@ -17,6 +18,16 @@ export default async function FavouritesWithSession({ session, animalType }: { s
         revalidatePath("/favourites");
     }
 
+    const footers =
+        animalType === "Schnuk"
+            ? Object.fromEntries(
+                  favourites.map((fav) => {
+                      const day = getSchnukDayForImageIndex(fav.index);
+                      return [fav.scheduledImageId, SCHNUK_DAY_CONTENT[day] ?? null];
+                  })
+              )
+            : undefined;
+
     return (
         <ImageList
             images={favourites}
@@ -24,6 +35,7 @@ export default async function FavouritesWithSession({ session, animalType }: { s
             withDialog
             pageTitle="Your favourites"
             notFoundMessage="No favourites yet. Go add some animals!"
+            footers={footers}
         />
     );
 }
