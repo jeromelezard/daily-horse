@@ -11,7 +11,8 @@ export const SCHNUK_DAY_CONTENT: readonly ReactNode[] = [
             <br />
             <br /> How did I become <b>the luckiest man in the entire world?</b>
             <br />
-            <br /> While we count down the days to your birthday, lets also take a journey back through time into how this came to be. See you tomorrow x
+            <br /> While we count down the days to your birthday, lets also take a journey back through time into how this came to be. See you
+            tomorrow x
         </p>
     </>,
     <>
@@ -61,10 +62,24 @@ export const SCHNUK_DAY_CONTENT: readonly ReactNode[] = [
         </p>
     </>,
     <>
+        <h1 className="text-center text-xl">
+            <b>Day 6(7) - Destined</b>
+        </h1>
+        <h1 className="text-center text-xl [overflow-wrap:anywhere]">
+            <b>❤️❤️❤️ HAPPY BIRTHDAY ❤️❤️❤️</b>
+        </h1>
         <p>
-            HAPPY BIRTHDAY
-            <strong>Day 6(7) - Destined.</strong> TODO.
+            Chongqing was not the beginning, and neither was that fateful message I sent you on Instagram. <br />
+            <br />
+            The truth is that from the moment I got the 272 with a girl I thought too cool to even have a chance with, and the moment you laid eyes on
+            that cute boy playing bass, that we were always going to be together, we just wouldn't know it for a very long time. <br />
+            <br />
+            Chiswick School may have had its flaws, but there is one thing that cannot be denied: it led me down a path that made me{" "}
+            <b>the luckiest man in the entire wold.</b>
+            <br />
+            <br />
         </p>
+        <h1 className="text-center">I love you so much ❤️</h1>
     </>,
 ];
 
