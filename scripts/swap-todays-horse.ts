@@ -1,33 +1,31 @@
 import { prisma } from "@/lib/prisma";
 import { getIndexWithSkips } from "@/lib/utils";
 
-const NEW_URL = "/horse.jpeg";
+const NEW_URLS = ["/horse2.jpeg", "/horse3.jpeg", "/horse4.jpeg"];
 
 async function swapTodaysHorse() {
     const { currentIndex } = await getIndexWithSkips("Horse");
 
-    const todaysImage = await prisma.scheduledImage.findFirst({
+    const upcoming = await prisma.scheduledImage.findMany({
         where: { animalType: "Horse", index: { gte: currentIndex } },
         orderBy: { dateIngested: "asc" },
+        take: NEW_URLS.length,
     });
 
-    if (!todaysImage) {
-        console.error("No scheduled horse image found for currentIndex", currentIndex);
+    if (upcoming.length < NEW_URLS.length) {
+        console.error(`Only found ${upcoming.length} upcoming horse images, need ${NEW_URLS.length}`);
         return;
     }
 
-    console.log("Found today's horse image:", {
-        scheduledImageId: todaysImage.scheduledImageId,
-        index: todaysImage.index,
-        oldUrl: todaysImage.url,
-    });
-
-    const updated = await prisma.scheduledImage.update({
-        where: { scheduledImageId: todaysImage.scheduledImageId },
-        data: { url: NEW_URL, source: "Other" },
-    });
-
-    console.log("Updated to:", updated.url);
+    for (let i = 0; i < NEW_URLS.length; i++) {
+        const row = upcoming[i];
+        const label = ["today", "tomorrow", "day after tomorrow"][i] ?? `day +${i}`;
+        console.log(`${label} (index ${row.index}) ${row.url} -> ${NEW_URLS[i]}`);
+        await prisma.scheduledImage.update({
+            where: { scheduledImageId: row.scheduledImageId },
+            data: { url: NEW_URLS[i], source: "Other" },
+        });
+    }
 }
 
 swapTodaysHorse()
